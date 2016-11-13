@@ -1,0 +1,115 @@
+/*
+================================
+Make everything a border-box
+================================*/
+* {
+    box-sizing: border-box;
+}
+
+/*
+================================
+Overall Layout - flexbox holy grail
+================================*/
+/*Adapted from:  https://philipwalton.github.io/solved-by-flexbox/demos/holy-grail/
+*/
+.HolyGrail {
+  display: flex;
+  height: 100%; /* 1, 3 */
+  flex-direction: column;
+  background: #ffffff;
+}
+
+.HolyGrail-header,
+.HolyGrail-footer {
+  flex: none; /* 2 */
+  background: #0275d8;
+}
+
+.HolyGrail-body {
+  display: flex;
+  flex: 1 0 auto; /* 2 */
+  flex-direction: column;
+  padding: 1.5em;
+  border: black solid 1px;
+}
+
+.HolyGrail-content {
+  margin-top: 0 2em;
+  background: rgba(147, 128, 108, 0.1);
+  border: red dashed 2px;
+}
+
+.HolyGrail-nav {
+  order: -1;
+}
+
+.HolyGrail-nav,
+.HolyGrail-ads {
+  padding: 1em;
+  border-radius: 3px;
+  background: olive;
+}
+
+@media (min-width: 768px) {
+  .HolyGrail-body {
+    flex-direction: row;
+  }
+  .HolyGrail-content {
+    flex: 1;
+    padding: 0 2em;
+    margin: 0;
+  }
+  .HolyGrail-nav, .HolyGrail-ads {
+    flex: 0 0 12em;
+  }
+}
+
+/*
+================================
+Flexbox grid layout
+================================*/
+/*Basic grid*/
+/*.Grid {
+  display: flex;
+  border: 2px dashed brown;
+  min-height: 10em;
+}
+.Grid-cell {
+  flex: 1;
+  border: 1px gray solid;
+  min-height: 2em;
+}*/
+
+/* With gutters */
+/*.Grid--gutters {
+  margin: -1em 0 0 -1em;
+}
+.Grid--gutters > .Grid-cell {
+  padding: 1em 0 0 1em;
+}*/
+
+/* Base classes for all media */
+/*.Grid--fit > .Grid-cell {
+  flex: 1;
+}
+.Grid--full > .Grid-cell {
+  flex: 0 0 100%;
+}
+.Grid--1of2 > .Grid-cell {
+  flex: 0 0 50%
+}
+.Grid--1of3 > .Grid-cell {
+  flex: 0 0 33.3333%
+}
+.Grid--1of4 > .Grid-cell {
+  flex: 0 0 25%
+}*/
+
+
+/*
+================================
+Debugging!
+================================*/
+.debug{
+  border: 1px red solid;
+}

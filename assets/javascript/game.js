@@ -1,7 +1,7 @@
 // console.log("This is a test!");
 
 /*
-HangMan game
+Hangman game
 */
 var hangmanGame = {
   wins: 1,
