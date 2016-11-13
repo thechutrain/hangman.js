@@ -11,18 +11,19 @@ Model
 */
 var model = {
   // PROPERTIES
-  wins: 1,
-  loses: 0,
+  totalWins: 1,
+  totalLoses: 0,
 
   totalGuesses: 0,
   guessesAllowed: 7,
-  gameOver: false,
+  freezeGame: false,
+  userWon: false,
 
 
   currentWord: "John Adams",
   incorrectLetters: ["b", "c"],
   correctLetters: [],
-  lettersGuessed: ["r"],
+  lettersGuessed: [],
 
   // METHODS
   guessesLeft: function(){
@@ -30,9 +31,14 @@ var model = {
   },
 
   // checks to see if the game is over or not 
-  isGameOver: function(){
+  isGameDone: function(){
     if ((this.guessesAllowed - this.totalGuesses) == 0){
-      this.gameOver = true;
+      this.freezeGame = true;
+    };
+    // TO DO: check if user won game or not
+    if (false){
+      this.freezeGame = true;
+      this.userWon = true;
     }
   },
 
@@ -63,22 +69,32 @@ Controller
 // };
 
 document.addEventListener("keyup", function(event){
-  // Part1: Check to see if the game is not over
-  model.isGameOver();
-  if (model.gameOver){
-    console.log("Game is over, play again?");
-    return;
-  }
-
-  // TO DO: Play again?
-  // write code if user presses enter, you reset game!
-
-  // Part 2: GAME is not over, so lets check what the user guessed!
+  // Part 0: get what the user pressed!
   // get the key that the user pressed
   // console.log(event.key);
   var userGuess = event.key;
 
-  // CHECKS ON THE EVENT
+  // Part1: Check to see if the game is over
+  // TO DO: FUNCTIONALIZE THIS later!!
+  model.isGameDone();
+  if (model.freezeGame){
+    // User already won?
+    if (model.userWon){
+        console.log("You won! Play again?");
+      // TO DO: Play again?
+      // write code if user presses enter, you reset game!
+      return;
+    } else{
+      console.log("Game is over, try again?");
+      // TO DO: Play again?
+      // write code if user presses enter, you reset game!
+      return;
+    }
+  }
+
+
+
+// Part 2: GAME is not over, so lets check what the user guessed!
   // 1.) check that its a letter
   if (event.keyCode < 65 || event.keyCode > 90){
     console.log("Sorry, " + event.key +" is not a valid letter");
@@ -102,16 +118,35 @@ document.addEventListener("keyup", function(event){
   } else{
     // 3b.) if its not correct --> update view
     console.log(userGuess + " is NOT in the currentWord: " + model.currentWord);
+    // update user total guesses, only for incorrect guesses!
+    model.totalGuesses +=1;
   };
+  // *Always excute below code, since we have been given 
+  // a valide new guess!
+  (function(){
+    // update user guesses to model
+    model.lettersGuessed.push(userGuess);
+    // console.log(model.lettersGuessed);
+    // console.log(model.totalGuesses);
+    // And update the guess count
+    console.log("You have: " + (model.guessesAllowed - model.totalGuesses) + " guesses left.");
+  })();
 
 
 
-  // check if the letter has been guessed already 
-  // check to see if user's guess is correct
-
-    // if guess is correct, add letters to board
-
-    //}
+  // Part 3 or Part 1 AGAIN: Check to see if the game is over
+  // TO DO: FUNCTIONALIZE THIS!!
+  model.isGameDone();
+  if (model.freezeGame){
+    // User already won?
+    if (model.userWon){
+        console.log("You won! Play again?");
+      return;
+    } else{
+      console.log("Game is over, try again?");
+      return;
+    }
+  }
     
 
 
