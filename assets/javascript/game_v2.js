@@ -65,7 +65,6 @@ var model = {
 
   newGame: function(){
     console.log("Loading a new game!!");
-    debugger
     // this function resets the model, and calls a function to get a random word
     this.currentWordArray = [];
     this.userViewCurrentWordArray = [];
@@ -75,7 +74,13 @@ var model = {
   // TO DO!!!!
   didUserWin: function(){
     // function returns true if user won
-    return false;
+    var array = this.userViewCurrentWordArray;
+    for (var i=0; i < array.length; i++){
+      if(array[i] == " "){
+        return false;
+      }
+    }
+    return true;
   },
 
   isGameDone: function(){
