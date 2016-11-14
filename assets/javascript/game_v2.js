@@ -35,17 +35,46 @@ var model = {
   freezeGame: false,
   userWon: false,
   currentWord: "John Adams",
-  currentWordArray: ["j", "o", "h", "n", "=", "a", "d","a","m", "s"],
+  currentWordArray: [],
+  userViewCurrentWordArray: [],
+  // currentWordArray: ["j", "o", "h", "n", "=", "a", "d","a","m", "s"],
   lettersGuessed: [],
   // incorrectLetters: ["b", "c"],
   // correctLetters: [],
 
   // METHODS
+  arrayifyWord: function(){
+    // takes the current word, and creates two arrays
+    // for userView and currentWordArray
+    var word = this.currentWord;
+    var letter = undefined;
+    for (var i=0; i<word.length; i++){
+      letter = word[i];
+      if (letter==" "){
+        currentWordArray.push("//");
+        userViewCurrentWordArray.push("//");
+      } else{
+        // nameArray.push("");
+        currentWordArray.push(letter.toUpperCase());
+        userViewCurrentWordArray.push(" ");
+      }
+    }
+  },
+
+  newGame: function(){
+    console.log("Loading a new game!!");
+    // this function resets the model, and calls a function to get a random word
+    this.currentWordArray = [];
+    this.userViewCurrentWordArray = [];
+    // this.arrayifyWord();
+  },
+
   // TO DO!!!!
   didUserWin: function(){
     // function returns true if user won
     return false;
   },
+
   isGameDone: function(){
     // returns true if User is out of guesses or if user has won
     // returns false if the game is not done (!^)
@@ -57,10 +86,9 @@ var model = {
       this.freezeGame = true;
       this.userWon = true;
       return true;
-    } else{
-    // user still has guesses left and has not won yet!
-      return false;
     }
+    // user still has guesses left and has not won yet!
+    return false;
   },
 
   isValidGuess: function(event){
@@ -106,6 +134,7 @@ Controller
 var controller = {
   // This takes an keyup event
   keyupEventListener: function(event){
+    console.log("Inside keyupEvent Listener!");
     // get the user's input!!
     var userGuess = event.key;
 
@@ -150,6 +179,8 @@ var controller = {
 Set up the event listener!!
 ============================================================
 */
+// document. --> unrealiable, and its not "onload"!!
+window.addEventListener("load", model.newGame);
 document.addEventListener("keyup", controller.keyupEventListener);
 
 
