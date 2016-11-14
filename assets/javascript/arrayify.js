@@ -25,8 +25,22 @@ currentWord = "John Adams".toUpperCase();
 var guess = "a".toUpperCase();
 for(var j=0; j< currentWord.length; j++){
   if (guess  == nameArray[j]){
-    console.log(j);
+    // console.log(j);
     userArray[j]=guess;
   }
 }
-console.log(userArray);
+// console.log(userArray);
+
+// CHECK TO SEE IF THERE ARE NO EMPTY SPACES
+var areThereEmptySpaces = function(array){
+  for (var i=0; i<array.length; i++){
+    if (array[i]==" "){
+      return true;
+    }
+  } return false;
+}
+
+console.log(areThereEmptySpaces(nameArray));
+console.log(areThereEmptySpaces(userArray));
+
+
