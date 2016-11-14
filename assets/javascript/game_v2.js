@@ -46,9 +46,13 @@ var model = {
   arrayifyWord: function(){
     // takes the current word, and creates two arrays
     // for userView and currentWordArray
+    console.log(this);
+    console.log("Inside load event");
     var word = this.currentWord;
-    var letter = undefined;
-    for (var i=0; i<word.length; i++){
+    console.log(this.currentWord);
+    return;
+    var letter = "";
+    for (var i=0; i< word.length; i++){
       letter = word[i];
       if (letter==" "){
         currentWordArray.push("//");
@@ -61,13 +65,18 @@ var model = {
     }
   },
 
-  newGame: function(){
-    console.log("Loading a new game!!");
-    // this function resets the model, and calls a function to get a random word
-    this.currentWordArray = [];
-    this.userViewCurrentWordArray = [];
-    // this.arrayifyWord();
-  },
+  // hello: function(){
+  //   console.log("hello");
+  // },
+
+  // newGame: function(){
+  //   console.log("Loading a new game!!");
+  //   // this function resets the model, and calls a function to get a random word
+  //   this.currentWordArray = [];
+  //   this.userViewCurrentWordArray = [];
+  //   // this.arrayifyWord();
+  //   this.hello();
+  // },
 
   // TO DO!!!!
   didUserWin: function(){
@@ -180,8 +189,14 @@ Set up the event listener!!
 ============================================================
 */
 // document. --> unrealiable, and its not "onload"!!
-window.addEventListener("load", model.newGame);
-document.addEventListener("keyup", controller.keyupEventListener);
+// DOESNT WORK!!
+// var test = function(){
+//   console.log("hello");
+// };
+// document.addEventListener("load", test);
+
+window.addEventListener("load", model.arrayifyWord.bind(model));
+document.addEventListener("keyup", controller.keyupEventListener.bind(controller));
 
 
 

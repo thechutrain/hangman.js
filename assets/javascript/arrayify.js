@@ -43,4 +43,11 @@ var areThereEmptySpaces = function(array){
 console.log(areThereEmptySpaces(nameArray));
 console.log(areThereEmptySpaces(userArray));
 
-
+var A = {
+  method_1: function(){
+    console.log("hello");
+  },
+  method_2: function(){
+    this.method_1();
+  }
+};
