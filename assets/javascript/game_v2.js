@@ -46,37 +46,31 @@ var model = {
   arrayifyWord: function(){
     // takes the current word, and creates two arrays
     // for userView and currentWordArray
-    console.log(this);
-    console.log("Inside load event");
+    // console.log(this); // returns model!
     var word = this.currentWord;
-    console.log(this.currentWord);
-    return;
-    var letter = "";
+    // console.log(this.currentWord);
+    var letter;
     for (var i=0; i< word.length; i++){
       letter = word[i];
       if (letter==" "){
-        currentWordArray.push("//");
-        userViewCurrentWordArray.push("//");
+        this.currentWordArray.push("//");
+        this.userViewCurrentWordArray.push("//");
       } else{
         // nameArray.push("");
-        currentWordArray.push(letter.toUpperCase());
-        userViewCurrentWordArray.push(" ");
+        this.currentWordArray.push(letter.toUpperCase());
+        this.userViewCurrentWordArray.push(" ");
       }
     }
   },
 
-  // hello: function(){
-  //   console.log("hello");
-  // },
-
-  // newGame: function(){
-  //   console.log("Loading a new game!!");
-  //   // this function resets the model, and calls a function to get a random word
-  //   this.currentWordArray = [];
-  //   this.userViewCurrentWordArray = [];
-  //   // this.arrayifyWord();
-  //   this.hello();
-  // },
+  newGame: function(){
+    console.log("Loading a new game!!");
+    debugger
+    // this function resets the model, and calls a function to get a random word
+    this.currentWordArray = [];
+    this.userViewCurrentWordArray = [];
+    this.arrayifyWord();
+  },
 
   // TO DO!!!!
   didUserWin: function(){
@@ -143,6 +137,7 @@ Controller
 var controller = {
   // This takes an keyup event
   keyupEventListener: function(event){
+    // debugging purposes
     console.log("Inside keyupEvent Listener!");
     // get the user's input!!
     var userGuess = event.key;
@@ -195,7 +190,8 @@ Set up the event listener!!
 // };
 // document.addEventListener("load", test);
 
-window.addEventListener("load", model.arrayifyWord.bind(model));
+// USE BIND!!
+window.addEventListener("load", model.newGame.bind(model));
 document.addEventListener("keyup", controller.keyupEventListener.bind(controller));
 
 
