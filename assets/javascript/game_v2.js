@@ -121,13 +121,30 @@ var model = {
     // returns the letter(str) if its found, else undefined
     // console.log("Inside model.processGuess: " + userGuess);
     // 1.) add letter to the letters guessed
-    this.lettersGuessed.push(userGuess);
+    var userGuessUpper = userGuess.toUpperCase();
+    this.lettersGuessed.push(userGuessUpper);
     // 2.) if letter is in word, return the letter
-    if (this.currentWordArray.indexOf(userGuess) >= 0){
+    if (this.currentWordArray.indexOf(userGuessUpper) >= 0){
+      console.log(userGuessUpper + " was found!");
+      // Comment to self: maybe I should simplify names ot 
+      // arrayKey and arrayUser ...
+      // Since indexOf only finds the first occurance, loop
+      // through arrayKey and find all matches of the correct guesses
+      // and set those index hits to arrayUser
+      var arrayKey = this.currentWordArray;
+      var arrayUser = this.userViewCurrentWordArray
+      for (var i = 0; i < arrayKey.length; i++){
+        if(arrayKey[i]==userGuessUpper){
+          arrayUser[i]=userGuessUpper;
+        }
+      }
       return true; // this will be a string
     }
-    // 3.) if letter is not in the word, return flase
+    else{
+    // 3.) if letter is not in the word, +=1 incorrect guess, and return false
+    this.incorrectGuesses +=1;
     return false; 
+    }
   },
 
 }
@@ -140,13 +157,8 @@ Controller
 2.) send message to user
 */
 var controller = {
-  // This takes an keyup event
-  keyupEventListener: function(event){
-    // debugging purposes
-    console.log("Inside keyupEvent Listener!");
-    // get the user's input!!
-    var userGuess = event.key;
-
+  // this function checks to see if you should continue or not
+  continue: function(){
     //1.) check to see if the game is done / frozen (function will update! )
     if (model.isGameDone()){
       // if user won, update view
@@ -157,7 +169,22 @@ var controller = {
         console.log("Better luck next time kiddo!");
         view.updateMessage("Better luck next time!");
       }
-      // Do Not Proceed!
+      // DO NOT PROCEED because the game is done
+      return false;
+    }
+    return true;
+  },
+
+  // This takes a keyup event, and will process the key input
+  keyupEventListener: function(event){
+    // debugging purposes
+    console.log("Inside keyupEvent Listener!");
+    // get the user's input!!
+    var userGuess = event.key;
+
+    // MAKE INTO A FUNCTION
+    //1.) check to see if the game is done / frozen (function will update! )
+    if (this.continue() == false){
       return;
     }
 
@@ -176,6 +203,12 @@ var controller = {
       view.updateMessage(userGuess + " is a correct guess!");
     } else{
       view.updateMessage("Sorry, no " + userGuess);
+    }
+
+
+    // MAKE INTO A FUNCTION
+    if (this.continue() == false){
+      return;
     }
 
   },
