@@ -36,7 +36,7 @@ Overall Layout - flexbox holy grail
 .HolyGrail-content {
   margin-top: 0 2em;
   background: rgba(147, 128, 108, 0.1);
-  border: red dashed 2px;
+  padding: 0.5em;
 }
 
 .HolyGrail-nav {
@@ -106,11 +106,51 @@ Flexbox grid layout
 }*/
 
 
+/*
+================================
+wordContainer
+================================*/
+.wordContainer{
+
+}
+
+.wordWrapper{
+  width: 100%;
+  padding-left: 2em;
+  padding-right: 2em;
+  text-align: center;
+/*  display: -webkit-flex;
+  display: flex;*/
+}
+.letter{
+  display: inline-block;
+  min-width: 2em;
+  line-height: 0;
+  border: 1px solid width;
+  text-decoration: underline;
+  /*flex:1;*/
+}
 
 /*
 ================================
-Debugging!
+Debugging! visualizing easily
 ================================*/
-.debug{
-  border: 1px red solid;
+.v1{
+  border: 5px gray solid;
+}
+
+.v2{
+  border:4px black dashed;
+}
+
+.v3{
+  border: 3px brown double;
+}
+
+.v4{
+  border: 2px red solid;
+}
+
+.v5{
+  border: 1px blue solid;
 }
