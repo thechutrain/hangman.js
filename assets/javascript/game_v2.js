@@ -8,15 +8,21 @@ View
 var view = {
   //Properties
   messageElement: document.getElementById("messages"),
+
   // Methods
-  test: function(){
-    console.log("Event listener works!");
-  },
   updateMessage: function(messageString){
     this.messageElement.innerHTML = messageString;
     // have the message disappear after 5 seconds!
     // setTimeout(function(){}, 5000);
     // console.log("Hi");
+  },
+  createWordBoard: function(){
+    // this function will create the empty word display
+    // ex.) __ __ __   __ __ __ __ __
+  },
+  updateWordBoard: function(letter, array_of_hits){
+    // this function will be given a letter and array containing
+    // the indexes of where those letters go and highlight them
   }
 }
 
@@ -70,6 +76,9 @@ var model = {
     this.currentWordArray = [];
     this.userViewCurrentWordArray = [];
     this.arrayifyWord();
+    // Reset incorrect guesses & letters guessed duhhhh
+    this.incorrectGuesses = 0;
+    this.lettersGuessed = [];
   },
 
   // TO DO!!!!
@@ -176,6 +185,18 @@ var controller = {
     return true;
   },
 
+  test: function(){
+    // TO DO!!!
+    // console.log("Event listener succesfully calls controller method!");
+    // 1.) Tell the model to start a new game
+    model.newGame();
+    // 2.) Update the view, specifically the word container / display
+
+    // DEBUGGING
+    console.log("The new game button was pressed");
+
+  },
+
   // This takes a keyup event, and will process the key input
   keyupEventListener: function(event){
     // debugging purposes
@@ -225,7 +246,7 @@ Set up the event listener!!
 ============================================================
 */
 window.addEventListener("load", model.newGame.bind(model));
-document.getElementById("newGame").addEventListener("click", view.test);
+document.getElementById("newGame").addEventListener("click", controller.test);
 document.addEventListener("keyup", controller.keyupEventListener.bind(controller));
 
 
