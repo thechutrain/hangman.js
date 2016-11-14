@@ -15,6 +15,7 @@
 <header class="HolyGrail-header">
   <h3>Welcome to Hangman</h3>
   <div id="messages">Messages go here:</div>
+  <div id="div1">hi</div>
 </header>
 
 <!-- Main content of Page -->
@@ -22,8 +23,16 @@
   <!-- Main Content of Site -->
   <article class="HolyGrail-content">
     <!-- DISPLAY THE WORD YOU ARE GUESSING HERE -->
-    <div class="wordContainer v2">
-      <h3> Your Word: </h3>
+    <div id="wordContainer" class="v2">
+    <!-- Header to the word Container -->
+      <div id="wordHeader v3">
+        <h3>Your Word:</h3>
+      </div>
+
+    <br>
+    <!-- Body of the Word Container  -->
+    <div id="wordBody" class="v3">
+    <br>
       <div class="wordWrapper v4">
         <div class="letter-wrapper">
           <div class="letter">
@@ -50,8 +59,9 @@
                <p>L</p>
           </div>
         </div>
-
       </div> <!-- closes wordWrapper -->
+    </div> <!-- closes wordBody -->
+
     </div> <!-- closes wordContainer -->
 <br>
 <br>

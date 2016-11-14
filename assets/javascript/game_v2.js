@@ -16,9 +16,23 @@ var view = {
     // setTimeout(function(){}, 5000);
     // console.log("Hi");
   },
-  createWordBoard: function(){
-    // this function will create the empty word display
+  createWordBoard: function(length, spaces){
+    // this function will be given the length of the word &
+    // an array containing the indexes of where there are spaces
     // ex.) __ __ __   __ __ __ __ __
+    console.log("view.createWordBoard was called!");
+    // 1.) Reset the wordContainer
+    var container = document.getElementById("wordContainer");
+    var bodyOld = document.getElementById("wordBody");
+    // Create the new body that will replace old body
+    var bodyNew = document.createElement("div"); 
+    bodyNew.setAttribute("id", "wordBody");
+    bodyNew.setAttribute("class", "v2");
+    container.replaceChild(bodyNew, bodyOld);
+    // console.log(length);
+    // console.log(spaces);
+
+
   },
   updateWordBoard: function(letter, array_of_hits){
     // this function will be given a letter and array containing
@@ -81,7 +95,6 @@ var model = {
     this.lettersGuessed = [];
   },
 
-  // TO DO!!!!
   didUserWin: function(){
     // function returns true if user won
     var array = this.userViewCurrentWordArray;
@@ -190,17 +203,19 @@ var controller = {
     // console.log("Event listener succesfully calls controller method!");
     // 1.) Tell the model to start a new game
     model.newGame();
+    // 1a.) also tell the user that there's been a new word:
+    view.updateMessage("New Game - button was pressed!!");
     // 2.) Update the view, specifically the word container / display
-
+    view.createWordBoard(5, []);
     // DEBUGGING
-    console.log("The new game button was pressed");
+    // console.log("The new game button was pressed");
 
   },
 
   // This takes a keyup event, and will process the key input
   keyupEventListener: function(event){
     // debugging purposes
-    console.log("Inside keyupEvent Listener!");
+    // console.log("Inside keyupEvent Listener!");
     // get the user's input!!
     var userGuess = event.key;
 
