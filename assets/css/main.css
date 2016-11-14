@@ -124,14 +124,22 @@ wordContainer
 }
 .letter-wrapper{
   display: inline-block;
-  min-width: 2em;
-  min-height: 2em;
+  width: 2em;
+  height: 2em;
   line-height: 0;
   border-bottom: 3px solid black;
   margin-bottom: 2px;
   position: relative;
-  /*overflow: auto;*/
-  
+  /*overflow: auto;*/ 
+}
+.no-letter-wrapper{
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  line-height: 0;
+  /*border-bottom: 3px solid black;*/
+  margin-bottom: 2px;
+  position: relative;
 }
 
 .letter{
@@ -139,6 +147,31 @@ wordContainer
   width: 100%;
   position: absolute;
   bottom: -0.5em;
+}
+.space{
+  display: block;
+  width: 100%;
+  position: absolute;
+  bottom: -0.5em;
+  visibility: hidden;
+}
+
+
+/*
+================================
+New Game Button
+================================*/
+#newGame{
+  max-width: 5em;
+  text-align: center;
+  background: lightblue;
+  border: black solid 2px;
+  border-radius: 3.5em;
+}
+#newGame:hover{
+  background: #0275d8;
+  border: blue dashed 3px;
+  font-weight: 600;
 }
 
 /*

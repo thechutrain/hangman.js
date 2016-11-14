@@ -9,6 +9,9 @@ var view = {
   //Properties
   messageElement: document.getElementById("messages"),
   // Methods
+  test: function(){
+    console.log("Event listener works!");
+  },
   updateMessage: function(messageString){
     this.messageElement.innerHTML = messageString;
     // have the message disappear after 5 seconds!
@@ -222,6 +225,7 @@ Set up the event listener!!
 ============================================================
 */
 window.addEventListener("load", model.newGame.bind(model));
+document.getElementById("newGame").addEventListener("click", view.test);
 document.addEventListener("keyup", controller.keyupEventListener.bind(controller));
 
 
