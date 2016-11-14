@@ -37,10 +37,8 @@ var model = {
   currentWord: "John Adams",
   currentWordArray: [],
   userViewCurrentWordArray: [],
-  // currentWordArray: ["j", "o", "h", "n", "=", "a", "d","a","m", "s"],
   lettersGuessed: [],
-  // incorrectLetters: ["b", "c"],
-  // correctLetters: [],
+
 
   // METHODS
   arrayifyWord: function(){
@@ -108,7 +106,7 @@ var model = {
       return [false, "Not a letter"];
     } 
     // 2.) check that it has not been guessed yet
-    else if (this.lettersGuessed.indexOf(event.key) >= 0){
+    else if (this.lettersGuessed.indexOf(event.key.toUpperCase()) >= 0){
       view.updateMessage(event.key + " was ALREADY guessed!");
       return [false, "Already Guessed"];
     }
@@ -190,6 +188,8 @@ var controller = {
 
     //2.) check to see if the user input is valid
     var validResults = model.isValidGuess(event);
+    // console.log(validResults);
+    // debugger
     // console.log(validResults); // array[boolean if valid, error message]
     if (!validResults[0]){
       view.updateMessage(validResults[1]);
@@ -221,14 +221,6 @@ var controller = {
 Set up the event listener!!
 ============================================================
 */
-// document. --> unrealiable, and its not "onload"!!
-// DOESNT WORK!!
-// var test = function(){
-//   console.log("hello");
-// };
-// document.addEventListener("load", test);
-
-// USE BIND!!
 window.addEventListener("load", model.newGame.bind(model));
 document.addEventListener("keyup", controller.keyupEventListener.bind(controller));
 
