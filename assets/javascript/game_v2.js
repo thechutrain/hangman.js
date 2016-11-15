@@ -17,9 +17,9 @@ var view = {
     // console.log("Hi");
   },
 
-  createWordBoard: function(length, spaces){
+  createWordBoard: function(wordArray){
     // this function will be given the length of the word &
-    // an array containing the indexes of where there are spaces
+    // an array of the word to display
     // ex.) __ __ __   __ __ __ __ __
     console.log("view.createWordBoard was called!");
     // 1) get the parent node
@@ -54,7 +54,8 @@ var view = {
         parent.appendChild(child);
 
         // Add this new letter to the wrapper!
-        newWrapper.appendChild(parent);
+        // newWrapper.appendChild(parent);
+        return parent;
     };
 
       // 3b.) make cookie cutter of no-letter-wrapper
@@ -78,29 +79,36 @@ var view = {
         parent.appendChild(child);
 
         // Add this new letter to the wrapper!
-        newWrapper.appendChild(parent);
+        // newWrapper.appendChild(parent);
+        return parent;
     };
 
     // testing, call the makeSpace funciton
-    makeLetter(0);
-    makeLetter(1);
-    makeLetter(2);
-    makeSpace(3);
-    makeLetter(4);
-    makeLetter(5);
-    console.log(newWrapper);
-    // debugger
+    // makeLetter(0);
+    // makeLetter(1);
+    // makeLetter(2);
+    // makeSpace(3);
+      // console.log(this);
+      // return;
 
       // 3c.) loop through the length of the array
-
+      for (var i=0; i < wordArray.length; i++){ 
+        var element;
         // check to see if index is a value in spaces(array)
-
-            //i.) if yes, then append a no-letter-wrapper
-
-            //ii.) if no, then append a letter-wrapper
-
-          // either way set attribute id = index
-
+        if (wordArray[i]=="//"){
+          element = makeSpace(i);
+          // console.log(element);
+          // debugger;
+        } else{
+          element = makeLetter(i);
+          // console.log(element);
+          // debugger
+        }
+        // In both cases, I'll append the newely made element into wrapper element
+        newWrapper.appendChild(element);
+      }
+      // console.log(newWrapper);
+      // debugger;
     // 4.) replace the old child with new child
     container.replaceChild(newWrapper, oldWrapper);
   },
@@ -110,7 +118,7 @@ var view = {
   updateWordBoard: function(letter, array_of_hits){
     // this function will be given a letter and array containing
     // the indexes of where those letters go and highlight them
-  }
+  },
 }
 
 /*
@@ -279,7 +287,7 @@ var controller = {
     // 1a.) also tell the user that there's been a new word:
     view.updateMessage("New Game - button was pressed!!");
     // 2.) Update the view, specifically the word container / display
-    view.createWordBoard(5, []);
+    view.createWordBoard(model.currentWordArray);
     // DEBUGGING
     // console.log("The new game button was pressed");
 
