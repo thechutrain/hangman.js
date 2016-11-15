@@ -32,7 +32,7 @@ var view = {
     // make sure it has same attributes
     var newWrapper = document.createElement("div"); 
     newWrapper.setAttribute("id", "wordWrapper");
-    newWrapper.setAttribute("class", "v2");
+    newWrapper.setAttribute("class", "v4");
     // 3a.) make cookie cutter of letter-wrapper
     var makeLetter = function(id_num){
         // create grandchild
@@ -89,7 +89,7 @@ var view = {
     makeLetter(4);
     makeLetter(5);
     console.log(newWrapper);
-    debugger
+    // debugger
 
       // 3c.) loop through the length of the array
 

@@ -129,6 +129,7 @@ wordContainer
   line-height: 0;
   border-bottom: 3px solid black;
   margin-bottom: 2px;
+  margin-right: 0.5em;
   position: relative;
   /*overflow: auto;*/ 
 }
