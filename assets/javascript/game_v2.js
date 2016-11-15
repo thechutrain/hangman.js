@@ -17,11 +17,10 @@ var view = {
     // console.log("Hi");
   },
 
-  createWordBoard: function(wordArray){
+  updateWord: function(wordArray){
     // this function will be given the length of the word &
     // an array of the word to display
     // ex.) __ __ __   __ __ __ __ __
-    console.log("view.createWordBoard was called!");
     // 1) get the parent node
     var container = document.getElementById("wordBody");
 
@@ -33,91 +32,57 @@ var view = {
     var newWrapper = document.createElement("div"); 
     newWrapper.setAttribute("id", "wordWrapper");
     newWrapper.setAttribute("class", "v4");
-    // 3a.) make cookie cutter of letter-wrapper
-    var makeLetter = function(id_num){
-        // create grandchild
+
+    // 3a.) make cookie cutter of letter or space nested element
+    var makeBox = function(id_num, letter_bool){
+      var text, childClass, parentClass;
+      if(letter_bool){
+        text = " ";
+        childClass = "letter";
+        parentClass = "letter-wrapper";
+      } else{
+        text = "//";
+        childClass = "space";
+        parentClass = "no-letter-wrapper";
+      }
+      // Now make it!
+       // create grandchild
         // * make element, set attributes, make text node, append text node
         var grandChild = document.createElement("p");
         grandChild.setAttribute("id", id_num.toString());
-        var letterText = document.createTextNode(" ");
+        var letterText = document.createTextNode(text);
         grandChild.appendChild(letterText);
 
         // create child
         // * make the child element, set class, and append child to it
         var child = document.createElement("div");
-        child.setAttribute("class", "letter");
+        child.setAttribute("class", childClass);
         child.appendChild(grandChild);
 
         // create parent
         var parent = document.createElement("div");
-        parent.setAttribute("class", "letter-wrapper");
+        parent.setAttribute("class", parentClass);
         parent.appendChild(child);
 
-        // Add this new letter to the wrapper!
-        // newWrapper.appendChild(parent);
+        // return the box!
         return parent;
     };
 
-      // 3b.) make cookie cutter of no-letter-wrapper
-      var makeSpace = function(id_num){
-        // create grandchild
-        // * make element, set attributes, make text node, append text node
-        var grandChild = document.createElement("p");
-        grandChild.setAttribute("id", id_num.toString());
-        var letterText = document.createTextNode("//");
-        grandChild.appendChild(letterText);
-
-        // create child
-        // * make the child element, set class, and append child to it
-        var child = document.createElement("div");
-        child.setAttribute("class", "space");
-        child.appendChild(grandChild);
-
-        // create parent
-        var parent = document.createElement("div");
-        parent.setAttribute("class", "no-letter-wrapper");
-        parent.appendChild(child);
-
-        // Add this new letter to the wrapper!
-        // newWrapper.appendChild(parent);
-        return parent;
-    };
-
-    // testing, call the makeSpace funciton
-    // makeLetter(0);
-    // makeLetter(1);
-    // makeLetter(2);
-    // makeSpace(3);
-      // console.log(this);
-      // return;
-
-      // 3c.) loop through the length of the array
+    // 3c.) loop through the length of the array, and if its not a "//" (space)
+    // make a letter element box
       for (var i=0; i < wordArray.length; i++){ 
         var element;
         // check to see if index is a value in spaces(array)
+        var isLetter = true;
         if (wordArray[i]=="//"){
-          element = makeSpace(i);
-          // console.log(element);
-          // debugger;
-        } else{
-          element = makeLetter(i);
-          // console.log(element);
-          // debugger
+          isLetter = false;
         }
+        element = makeBox(i, isLetter);
         // In both cases, I'll append the newely made element into wrapper element
         newWrapper.appendChild(element);
       }
-      // console.log(newWrapper);
-      // debugger;
     // 4.) replace the old child with new child
     container.replaceChild(newWrapper, oldWrapper);
-  },
-
-
-
-  updateWordBoard: function(letter, array_of_hits){
-    // this function will be given a letter and array containing
-    // the indexes of where those letters go and highlight them
   },
 }
 
@@ -280,14 +245,13 @@ var controller = {
   },
 
   test: function(){
-    // TO DO!!!
     // console.log("Event listener succesfully calls controller method!");
     // 1.) Tell the model to start a new game
     model.newGame();
     // 1a.) also tell the user that there's been a new word:
     view.updateMessage("New Game - button was pressed!!");
     // 2.) Update the view, specifically the word container / display
-    view.createWordBoard(model.currentWordArray);
+    view.updateWord(model.currentWordArray);
     // DEBUGGING
     // console.log("The new game button was pressed");
 
