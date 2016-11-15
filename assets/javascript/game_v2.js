@@ -34,11 +34,11 @@ var view = {
     newWrapper.setAttribute("id", "wordWrapper");
     newWrapper.setAttribute("class", "v2");
     // 3a.) make cookie cutter of letter-wrapper
-
+    var makeLetter = function(id_num){
         // create grandchild
         // * make element, set attributes, make text node, append text node
         var grandChild = document.createElement("p");
-        // grandChild.setAttribute("class", "v5");
+        grandChild.setAttribute("id", id_num.toString());
         var letterText = document.createTextNode(" ");
         grandChild.appendChild(letterText);
 
@@ -55,10 +55,41 @@ var view = {
 
         // Add this new letter to the wrapper!
         newWrapper.appendChild(parent);
-
-
+    };
 
       // 3b.) make cookie cutter of no-letter-wrapper
+      var makeSpace = function(id_num){
+        // create grandchild
+        // * make element, set attributes, make text node, append text node
+        var grandChild = document.createElement("p");
+        grandChild.setAttribute("id", id_num.toString());
+        var letterText = document.createTextNode("//");
+        grandChild.appendChild(letterText);
+
+        // create child
+        // * make the child element, set class, and append child to it
+        var child = document.createElement("div");
+        child.setAttribute("class", "space");
+        child.appendChild(grandChild);
+
+        // create parent
+        var parent = document.createElement("div");
+        parent.setAttribute("class", "no-letter-wrapper");
+        parent.appendChild(child);
+
+        // Add this new letter to the wrapper!
+        newWrapper.appendChild(parent);
+    };
+
+    // testing, call the makeSpace funciton
+    makeLetter(0);
+    makeLetter(1);
+    makeLetter(2);
+    makeSpace(3);
+    makeLetter(4);
+    makeLetter(5);
+    console.log(newWrapper);
+    debugger
 
       // 3c.) loop through the length of the array
 
