@@ -34,22 +34,12 @@ var view = {
     newWrapper.setAttribute("id", "wordWrapper");
     newWrapper.setAttribute("class", "v2");
     // 3a.) make cookie cutter of letter-wrapper
-        // create outer parent div
-
-            // // THIS WORKS
-            // var letter_wrapper = document.createElement("div");
-            // var testText = document.createTextNode("Hello");
-            // letter_wrapper.appendChild(testText);
-            // console.log(letter_wrapper);
-
-        // create inner child letter
-        // var letter = document.createElement("div");
 
         // create grandchild
         // * make element, set attributes, make text node, append text node
         var grandChild = document.createElement("p");
-        grandChild.setAttribute("class", "v5");
-        var letterText = document.createTextNode("&nbsp;");
+        // grandChild.setAttribute("class", "v5");
+        var letterText = document.createTextNode(" ");
         grandChild.appendChild(letterText);
 
         // create child
@@ -57,19 +47,19 @@ var view = {
         var child = document.createElement("div");
         child.setAttribute("class", "letter");
         child.appendChild(grandChild);
-        console.log(child);
-        debugger;
+        // console.log(child);
+        // debugger;
 
+        // create parent
+        var parent = document.createElement("div");
+        parent.setAttribute("class", "letter-wrapper");
+        parent.appendChild(child);
+        // console.log(parent);
+        // debugger
 
+        // Add this new letter to the wrapper!
+        newWrapper.appendChild(parent);
 
-        // append inner child to child
-        // letter_wrapper.appendChild(letter);
-
-        // append child to parent
-        // newWrapper.appendChild(letter_wrapper);
-
-
-    // TEST by seeing if you can append to newWrapper element!!
 
 
       // 3b.) make cookie cutter of no-letter-wrapper
@@ -83,8 +73,8 @@ var view = {
             //ii.) if no, then append a letter-wrapper
 
           // either way set attribute id = index
+
     // 4.) replace the old child with new child
-    debugger
     container.replaceChild(newWrapper, oldWrapper);
   },
 
