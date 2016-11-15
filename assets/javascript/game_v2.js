@@ -31,7 +31,7 @@ var view = {
     // make sure it has same attributes
     var newWrapper = document.createElement("div"); 
     newWrapper.setAttribute("id", "wordWrapper");
-    newWrapper.setAttribute("class", "v4");
+    // newWrapper.setAttribute("class", "v4");
 
     // 3a.) make cookie cutter of letter or space nested element
     var makeBox = function(id_num, letter_bool, optional_letter){
