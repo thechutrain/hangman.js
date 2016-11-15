@@ -16,6 +16,7 @@ var view = {
     // setTimeout(function(){}, 5000);
     // console.log("Hi");
   },
+
   createWordBoard: function(length, spaces){
     // this function will be given the length of the word &
     // an array containing the indexes of where there are spaces
@@ -32,7 +33,44 @@ var view = {
     var newWrapper = document.createElement("div"); 
     newWrapper.setAttribute("id", "wordWrapper");
     newWrapper.setAttribute("class", "v2");
-      // 3a.) make cookie cutter of letter-wrapper
+    // 3a.) make cookie cutter of letter-wrapper
+        // create outer parent div
+
+            // // THIS WORKS
+            // var letter_wrapper = document.createElement("div");
+            // var testText = document.createTextNode("Hello");
+            // letter_wrapper.appendChild(testText);
+            // console.log(letter_wrapper);
+
+        // create inner child letter
+        // var letter = document.createElement("div");
+
+        // create grandchild
+        // * make element, set attributes, make text node, append text node
+        var grandChild = document.createElement("p");
+        grandChild.setAttribute("class", "v5");
+        var letterText = document.createTextNode("&nbsp;");
+        grandChild.appendChild(letterText);
+
+        // create child
+        // * make the child element, set class, and append child to it
+        var child = document.createElement("div");
+        child.setAttribute("class", "letter");
+        child.appendChild(grandChild);
+        console.log(child);
+        debugger;
+
+
+
+        // append inner child to child
+        // letter_wrapper.appendChild(letter);
+
+        // append child to parent
+        // newWrapper.appendChild(letter_wrapper);
+
+
+    // TEST by seeing if you can append to newWrapper element!!
+
 
       // 3b.) make cookie cutter of no-letter-wrapper
 
@@ -48,10 +86,10 @@ var view = {
     // 4.) replace the old child with new child
     debugger
     container.replaceChild(newWrapper, oldWrapper);
-
-
-
   },
+
+
+
   updateWordBoard: function(letter, array_of_hits){
     // this function will be given a letter and array containing
     // the indexes of where those letters go and highlight them
