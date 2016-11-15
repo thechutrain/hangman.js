@@ -34,8 +34,10 @@ var view = {
     newWrapper.setAttribute("class", "v4");
 
     // 3a.) make cookie cutter of letter or space nested element
-    var makeBox = function(id_num, letter_bool){
+    var makeBox = function(id_num, letter_bool, optional_letter){
       var text, childClass, parentClass;
+      // console.log(optional_letter);
+      // debugger
       if(letter_bool){
         text = " ";
         childClass = "letter";
@@ -50,7 +52,12 @@ var view = {
         // * make element, set attributes, make text node, append text node
         var grandChild = document.createElement("p");
         grandChild.setAttribute("id", id_num.toString());
-        var letterText = document.createTextNode(text);
+        // check to see if there's a letter:
+        if(optional_letter){
+          var letterText = document.createTextNode(optional_letter);
+        } else{
+          var letterText = document.createTextNode(text);
+        }
         grandChild.appendChild(letterText);
 
         // create child
@@ -73,11 +80,16 @@ var view = {
       for (var i=0; i < wordArray.length; i++){ 
         var element;
         // check to see if index is a value in spaces(array)
-        var isLetter = true;
         if (wordArray[i]=="//"){
-          isLetter = false;
+          // should be a space
+          element = makeBox(i, false);
+        } else if(wordArray[i]==" "){
+          // should be empty letter
+          element = makeBox(i, true);
+        } else {
+          // display the letter
+          element = makeBox(i, true, wordArray[i]);
         }
-        element = makeBox(i, isLetter);
         // In both cases, I'll append the newely made element into wrapper element
         newWrapper.appendChild(element);
       }
@@ -105,7 +117,7 @@ var model = {
   userWon: false,
   currentWord: "John Adams",
   currentWordArray: [],
-  userViewCurrentWordArray: [],
+  userWordArray: [],
   lettersGuessed: [],
 
 
@@ -121,11 +133,11 @@ var model = {
       letter = word[i];
       if (letter==" "){
         this.currentWordArray.push("//");
-        this.userViewCurrentWordArray.push("//");
+        this.userWordArray.push("//");
       } else{
         // nameArray.push("");
         this.currentWordArray.push(letter.toUpperCase());
-        this.userViewCurrentWordArray.push(" ");
+        this.userWordArray.push(" ");
       }
     }
   },
@@ -134,7 +146,7 @@ var model = {
     console.log("Loading a new game!!");
     // this function resets the model, and calls a function to get a random word
     this.currentWordArray = [];
-    this.userViewCurrentWordArray = [];
+    this.userWordArray = [];
     this.arrayifyWord();
     // Reset incorrect guesses & letters guessed duhhhh
     this.incorrectGuesses = 0;
@@ -143,7 +155,7 @@ var model = {
 
   didUserWin: function(){
     // function returns true if user won
-    var array = this.userViewCurrentWordArray;
+    var array = this.userWordArray;
     for (var i=0; i < array.length; i++){
       if(array[i] == " "){
         return false;
@@ -201,7 +213,7 @@ var model = {
       // through arrayKey and find all matches of the correct guesses
       // and set those index hits to arrayUser
       var arrayKey = this.currentWordArray;
-      var arrayUser = this.userViewCurrentWordArray
+      var arrayUser = this.userWordArray
       for (var i = 0; i < arrayKey.length; i++){
         if(arrayKey[i]==userGuessUpper){
           arrayUser[i]=userGuessUpper;
@@ -226,6 +238,11 @@ Controller
 2.) send message to user
 */
 var controller = {
+  newGame: function(){
+    model.newGame();
+    view.updateWord(model.userWordArray);
+  },
+
   // this function checks to see if you should continue or not
   continue: function(){
     //1.) check to see if the game is done / frozen (function will update! )
@@ -251,7 +268,7 @@ var controller = {
     // 1a.) also tell the user that there's been a new word:
     view.updateMessage("New Game - button was pressed!!");
     // 2.) Update the view, specifically the word container / display
-    view.updateWord(model.currentWordArray);
+    view.updateWord(model.userWordArray);
     // DEBUGGING
     // console.log("The new game button was pressed");
 
@@ -262,7 +279,6 @@ var controller = {
     // debugging purposes
     // console.log("Inside keyupEvent Listener!");
     // get the user's input!!
-    var userGuess = event.key;
 
     // MAKE INTO A FUNCTION
     //1.) check to see if the game is done / frozen (function will update! )
@@ -282,9 +298,11 @@ var controller = {
     }
 
     //3.) process the guess
+    var userGuess = event.key;
     if(model.processGuess(userGuess)){
       // the user had a correct vote!
       view.updateMessage(userGuess + " is a correct guess!");
+      view.updateWord(model.userWordArray);
     } else{
       view.updateMessage("Sorry, no " + userGuess);
     }
@@ -305,7 +323,7 @@ var controller = {
 Set up the event listener!!
 ============================================================
 */
-window.addEventListener("load", model.newGame.bind(model));
+window.addEventListener("load", controller.newGame.bind(controller));
 document.getElementById("newGame").addEventListener("click", controller.test);
 document.addEventListener("keyup", controller.keyupEventListener.bind(controller));
 
