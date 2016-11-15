@@ -110,11 +110,11 @@ Flexbox grid layout
 ================================
 wordContainer
 ================================*/
-.wordContainer{
+#wordContainer{
 
 }
 
-.wordWrapper{
+#wordWrapper{
   width: 100%;
   padding-left: 2em;
   padding-right: 2em;

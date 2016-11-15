@@ -21,16 +21,34 @@ var view = {
     // an array containing the indexes of where there are spaces
     // ex.) __ __ __   __ __ __ __ __
     console.log("view.createWordBoard was called!");
-    // 1.) Reset the wordContainer
-    var container = document.getElementById("wordContainer");
-    var bodyOld = document.getElementById("wordBody");
-    // Create the new body that will replace old body
-    var bodyNew = document.createElement("div"); 
-    bodyNew.setAttribute("id", "wordBody");
-    bodyNew.setAttribute("class", "v2");
-    container.replaceChild(bodyNew, bodyOld);
-    // console.log(length);
-    // console.log(spaces);
+    // 1) get the parent node
+    var container = document.getElementById("wordBody");
+
+    // 2.) get the child node
+    var oldWrapper = document.getElementById("wordWrapper");
+
+    // 3.) make a new child node that will replace the original
+    // make sure it has same attributes
+    var newWrapper = document.createElement("div"); 
+    newWrapper.setAttribute("id", "wordWrapper");
+    newWrapper.setAttribute("class", "v2");
+      // 3a.) make cookie cutter of letter-wrapper
+
+      // 3b.) make cookie cutter of no-letter-wrapper
+
+      // 3c.) loop through the length of the array
+
+        // check to see if index is a value in spaces(array)
+
+            //i.) if yes, then append a no-letter-wrapper
+
+            //ii.) if no, then append a letter-wrapper
+
+          // either way set attribute id = index
+    // 4.) replace the old child with new child
+    debugger
+    container.replaceChild(newWrapper, oldWrapper);
+
 
 
   },
