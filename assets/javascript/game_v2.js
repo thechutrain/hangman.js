@@ -47,15 +47,11 @@ var view = {
         var child = document.createElement("div");
         child.setAttribute("class", "letter");
         child.appendChild(grandChild);
-        // console.log(child);
-        // debugger;
 
         // create parent
         var parent = document.createElement("div");
         parent.setAttribute("class", "letter-wrapper");
         parent.appendChild(child);
-        // console.log(parent);
-        // debugger
 
         // Add this new letter to the wrapper!
         newWrapper.appendChild(parent);
