@@ -8,8 +8,11 @@ Make everything a border-box
 
 /*
 ================================
-Overall Layout - flexbox holy grail
+Overall Layout - HolyGrail flexbox!!
 ================================*/
+header{
+  padding: 0em 2em 1em 2em;
+}
 /*Adapted from:  https://philipwalton.github.io/solved-by-flexbox/demos/holy-grail/
 */
 .HolyGrail {
@@ -66,49 +69,12 @@ Overall Layout - flexbox holy grail
 
 /*
 ================================
-Flexbox grid layout
+HolyGrail-HEADER: keyboardContainer
 ================================*/
-/*Basic grid*/
-/*.Grid {
-  display: flex;
-  border: 2px dashed brown;
-  min-height: 10em;
-}
-.Grid-cell {
-  flex: 1;
-  border: 1px gray solid;
-  min-height: 2em;
-}*/
-
-/* With gutters */
-/*.Grid--gutters {
-  margin: -1em 0 0 -1em;
-}
-.Grid--gutters > .Grid-cell {
-  padding: 1em 0 0 1em;
-}*/
-
-/* Base classes for all media */
-/*.Grid--fit > .Grid-cell {
-  flex: 1;
-}
-.Grid--full > .Grid-cell {
-  flex: 0 0 100%;
-}
-.Grid--1of2 > .Grid-cell {
-  flex: 0 0 50%
-}
-.Grid--1of3 > .Grid-cell {
-  flex: 0 0 33.3333%
-}
-.Grid--1of4 > .Grid-cell {
-  flex: 0 0 25%
-}*/
-
 
 /*
 ================================
-wordContainer
+HolyGrail-BODY: wordContainer
 ================================*/
 #wordContainer{
 
@@ -142,6 +108,12 @@ wordContainer
   margin-bottom: 2px;
   position: relative;
 }
+/* display on new line if viewport is small!*/
+@media (max-width: 550px){
+  .no-letter-wrapper{
+    display: block;
+  }
+}
 
 .letter{
   display: block;
@@ -157,10 +129,16 @@ wordContainer
   visibility: hidden;
 }
 
+/*
+================================
+HolyGrail-BODY: keyboardContainer
+================================*/
+
+
 
 /*
 ================================
-New Game Button
+HolyGrail-NAV: New Game Button
 ================================*/
 #newGame{
   max-width: 5em;
