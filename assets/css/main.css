@@ -133,6 +133,20 @@ HolyGrail-BODY: wordContainer
 ================================
 HolyGrail-BODY: keyboardContainer
 ================================*/
+.keyboardContainer{
+  padding: 2em;
+}
+
+.keyboardRow{
+  width: 100%%;
+}
+
+.keyboard-letter{
+  border: 1px blue solid;
+  display: inline-block;
+  width: 33%;
+  /*float: left;*/
+}
 
 
 
