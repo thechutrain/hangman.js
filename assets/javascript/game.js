@@ -57,9 +57,16 @@ var view = {
 
   },
 
-  keyboardReset: function(){
+  resetKeyboard: function(){
     /* this function reset the view of the keyboard so
     that previous classes are removed*/
+    var alphabetArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I",
+  "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V",
+  "W", "X", "Y", "Z"];
+    for (var i=0; i < alphabetArray.length; i++){
+      document.querySelector("#" + alphabetArray[i]).className = "keyboard-letter";
+    }
+
   },
 
   updateWord: function(wordArray){
@@ -170,6 +177,9 @@ var model = {
   currentWordArray: [],
   userWordArray: [],
   lettersGuessed: [],
+  // ADDED TWO MORE PROPERTIES
+  correctLettersArray: [],
+  wrongLettersArray: [],
 
 
   // METHODS
@@ -194,10 +204,19 @@ var model = {
   },
 
   newGame: function(){
+    // TO DO! --------------------------------
+    // *get a random word!
+
+    this.currentWord = "James Madison";
+
+    //----------------------------------------
+
     console.log("Loading a new game!!");
     // this function resets the model, and calls a function to get a random word
     this.currentWordArray = [];
     this.userWordArray = [];
+    this.correctLettersArray = [];
+    this.wrongLettersArray = [];
     this.arrayifyWord();
     // Reset incorrect guesses & letters guessed duhhhh
     this.incorrectGuesses = 0;
@@ -257,12 +276,13 @@ var model = {
     this.lettersGuessed.push(userGuessUpper);
     // 2.) if letter is in word, return the letter
     if (this.currentWordArray.indexOf(userGuessUpper) >= 0){
-      console.log(userGuessUpper + " was found!");
-      // Comment to self: maybe I should simplify names ot 
-      // arrayKey and arrayUser ...
-      // Since indexOf only finds the first occurance, loop
-      // through arrayKey and find all matches of the correct guesses
-      // and set those index hits to arrayUser
+      // Add the correct letter to array:
+      this.correctLettersArray.push(userGuessUpper);
+      // console.log(userGuessUpper + " was found!");
+      // console.log(this.correctLettersArray);
+      // debugger;
+      
+
       var arrayKey = this.currentWordArray;
       var arrayUser = this.userWordArray
       for (var i = 0; i < arrayKey.length; i++){
@@ -275,6 +295,9 @@ var model = {
     else{
     // 3.) if letter is not in the word, +=1 incorrect guess, and return false
     this.incorrectGuesses +=1;
+    this.wrongLettersArray.push(userGuessUpper);
+    // console.log(this.wrongLettersArray);
+    // debugger
     return false; 
     }
   },
@@ -289,7 +312,7 @@ Controller
 2.) send message to user
 */
 var controller = {
-  newGame: function(){
+  initializeGame: function(){
     model.newGame();
     view.updateWord(model.userWordArray);
   },
@@ -312,7 +335,7 @@ var controller = {
     return true;
   },
 
-  test: function(){
+  newWord: function(){
     // console.log("Event listener succesfully calls controller method!");
     // 1.) Tell the model to start a new game
     model.newGame();
@@ -322,6 +345,8 @@ var controller = {
     view.updateWord(model.userWordArray);
     // DEBUGGING
     // console.log("The new game button was pressed");
+        // resets keyboard
+    view.resetKeyboard();
 
   },
 
@@ -358,6 +383,11 @@ var controller = {
       view.updateMessage("Sorry, no " + userGuess);
     }
 
+    // 4.) Update the view of the keyboard!
+    var correctLetters = model.correctLettersArray;
+    var incorrectLetters = model.wrongLettersArray;
+    view.updateKeyboard(correctLetters, incorrectLetters);
+
 
     // MAKE INTO A FUNCTION
     if (this.continue() == false){
@@ -367,11 +397,7 @@ var controller = {
     /* 
     TESTING CODE HERE within the eventListener
     */
-    var debugMessage = "Testing 123 ... \n\r";
-    debugMessage += "update Keyboard";
-    var correctLetters = ["A", "B", "C"];
-    var incorrectLetters = ["X", "Y", "Z"];
-    view.updateKeyboard(correctLetters, incorrectLetters);
+
 
   },
 } //closes controller
@@ -383,8 +409,8 @@ var controller = {
 Set up the event listener!!
 ============================================================
 */
-window.addEventListener("load", controller.newGame.bind(controller));
-document.getElementById("newGame").addEventListener("click", controller.test);
+window.addEventListener("load", controller.initializeGame.bind(controller));
+document.getElementById("newGame").addEventListener("click", controller.newWord);
 document.addEventListener("keyup", controller.keyupEventListener.bind(controller));
 
 
