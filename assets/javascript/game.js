@@ -24,23 +24,37 @@ var view = {
   var wrongLettersArray = wrongLettersArray;
 
   // get the keyboard row as an element
-  var keyboardRow = document.querySelector(".keyboardRow");
+  // var keyboardRow = document.querySelector(".keyboardRow");
   // console.log(keyboardRow.childNodes.length); // --> 53?
   
-  // loop through all the child elements of keyboard row
-  for (var i =0; i < keyboardRow.childNodes.length; i++){
-    console.log(keyboardRow.childNodes[i]);
-    return;
-  }
-  debugger
-  
-    // if the id is in correctLettersArray
-
+  // loop through all the keyboard-letter elements
+  var alphabetArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I",
+  "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V",
+  "W", "X", "Y", "Z"];
+  for (var i=0; i < alphabetArray.length; i++){
+    // console.log(alphabetArray[i]);
+    // get the keyboard-letter element's id
+    var letter = alphabetArray[i];
+    if (correctLettersArray.indexOf(letter) >= 0){
+      // if the id is in correctLettersArray
       // add the correct-letter classs
 
-    // else if the id is in the wrongLettersArray
+      // console.log(document.querySelector("#" + letter));
+      // debugger;
 
+      var element = document.querySelector("#" + letter);
+      element.className += " correct-letter";
+    } else if (wrongLettersArray.indexOf(letter) >= 0){
+       // else if the id is in the wrongLettersArray
       // add the wrong-letter class
+
+      var element = document.querySelector("#" + letter);
+      element.className += " wrong-letter";
+    }
+
+  };
+
+
   },
 
   keyboardReset: function(){
