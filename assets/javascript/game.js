@@ -17,8 +17,35 @@ var view = {
     // console.log("Hi");
   },
 
-  updateStats: function(){
+  updateKeyboard: function(correctLettersArray, wrongLettersArray){
+  /*this function takes in an array of correct letters, and wrong
+  letters and updates the keyboard to look that way. */
+  var correctLettersArray = correctLettersArray;
+  var wrongLettersArray = wrongLettersArray;
 
+  // get the keyboard row as an element
+  var keyboardRow = document.querySelector(".keyboardRow");
+  // console.log(keyboardRow.childNodes.length); // --> 53?
+  
+  // loop through all the child elements of keyboard row
+  for (var i =0; i < keyboardRow.childNodes.length; i++){
+    console.log(keyboardRow.childNodes[i]);
+    return;
+  }
+  debugger
+  
+    // if the id is in correctLettersArray
+
+      // add the correct-letter classs
+
+    // else if the id is in the wrongLettersArray
+
+      // add the wrong-letter class
+  },
+
+  keyboardReset: function(){
+    /* this function reset the view of the keyboard so
+    that previous classes are removed*/
   },
 
   updateWord: function(wordArray){
@@ -322,6 +349,15 @@ var controller = {
     if (this.continue() == false){
       return;
     }
+
+    /* 
+    TESTING CODE HERE within the eventListener
+    */
+    var debugMessage = "Testing 123 ... \n\r";
+    debugMessage += "update Keyboard";
+    var correctLetters = ["A", "B", "C"];
+    var incorrectLetters = ["X", "Y", "Z"];
+    view.updateKeyboard(correctLetters, incorrectLetters);
 
   },
 } //closes controller
