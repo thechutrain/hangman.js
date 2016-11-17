@@ -17,6 +17,10 @@ var view = {
     // console.log("Hi");
   },
 
+  updateStats: function(){
+
+  },
+
   updateWord: function(wordArray){
     // this function will be given the length of the word &
     // an array of the word to display
@@ -109,13 +113,19 @@ Model
 */
 var model = {
   // PROPERTIES
-  // totalWins: 1,
-  // totalLoses: 0,
+  // create 
+  // gameData: {
+  //   totalWins: 0,
+  //   totalLoses: 0,
+  //   totalRounds: 0,
+  //   famousPeople: ["Albert Einstein", "John F Kennedy"],
+
+  // },
   incorrectGuesses: 0,
   guessesAllowed: 7,
   freezeGame: false,
   userWon: false,
-  currentWord: "John Adams",
+  currentWord: "John F Kennedy",
   currentWordArray: [],
   userWordArray: [],
   lettersGuessed: [],
