@@ -160,9 +160,19 @@ HolyGrail-BODY: keyboardContainer
 
 .keyboard-letter > p {
   font-weight: 600;
-  
 }
 
+.wrong-letter {
+  border: 2px red solid;
+  background-color: whitesmoke;
+  color: red;
+}
+
+.correct-letter{
+  border: 2px green solid;
+  background-color: whitesmoke;
+  color: green;
+}
 
 
 /*
