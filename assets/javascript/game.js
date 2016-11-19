@@ -22,15 +22,12 @@ var view = {
   letters and updates the keyboard to look that way. */
   var correctLettersArray = correctLettersArray;
   var wrongLettersArray = wrongLettersArray;
-
-  // get the keyboard row as an element
-  // var keyboardRow = document.querySelector(".keyboardRow");
-  // console.log(keyboardRow.childNodes.length); // --> 53?
   
   // loop through all the keyboard-letter elements
   var alphabetArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I",
   "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V",
   "W", "X", "Y", "Z"];
+
   for (var i=0; i < alphabetArray.length; i++){
     // console.log(alphabetArray[i]);
     // get the keyboard-letter element's id
@@ -38,23 +35,15 @@ var view = {
     if (correctLettersArray.indexOf(letter) >= 0){
       // if the id is in correctLettersArray
       // add the correct-letter classs
-
-      // console.log(document.querySelector("#" + letter));
-      // debugger;
-
       var element = document.querySelector("#" + letter);
       element.className += " correct-letter";
     } else if (wrongLettersArray.indexOf(letter) >= 0){
        // else if the id is in the wrongLettersArray
       // add the wrong-letter class
-
       var element = document.querySelector("#" + letter);
       element.className += " wrong-letter";
     }
-
   };
-
-
   },
 
   resetKeyboard: function(){
@@ -67,6 +56,19 @@ var view = {
       document.querySelector("#" + alphabetArray[i]).className = "keyboard-letter";
     }
 
+  },
+
+  updateStats: function(statsArray){
+    //this function with accept an array of stats and update the
+    // view with those stats
+    // Update the guesses left
+    var guessesLeft = document.querySelector("#guessesLeft");
+    guessesLeft.innerHTML = statsArray[0];
+  },
+
+  resetStats: function(){
+    var guessesLeft = document.querySelector("#guessesLeft");
+    guessesLeft.innerHTML = model.guessesAllowed; // ??? should I let the view access the model?
   },
 
   updateWord: function(wordArray){
@@ -169,11 +171,18 @@ var model = {
   //   famousPeople: ["Albert Einstein", "John F Kennedy"],
 
   // },
+  // wordLibrary array will contain random names that will
+  // include many presidents and will choose one for the game!
+  wordLibrary: ["Bill Clinton", "George Washington", "John F Kennedy", 
+  "John Adams", "Thomas Jefferson", "Ronald Reagan", "Lyndon B Johnson",
+  "Richard Nixon", "George W Bush", "Barrack Obama", "Andrew Jackson",
+  "Harry Truman", "Dwight D Eisenhower", "Grover Cleveland"],
   incorrectGuesses: 0,
   guessesAllowed: 7,
+  guessesLeft: 7,
   freezeGame: false,
   userWon: false,
-  currentWord: "John F Kennedy",
+  currentWord: "",
   currentWordArray: [],
   userWordArray: [],
   lettersGuessed: [],
@@ -203,14 +212,16 @@ var model = {
     }
   },
 
+  getRandomWord: function(){
+    var arrayLength = this.wordLibrary.length;
+    var randomIndex = Math.floor(Math.random()* arrayLength);
+    // console.log(this.wordLibrary[randomIndex]);
+    // debugger
+    return this.wordLibrary[randomIndex];
+  },
+
   newGame: function(){
-    // TO DO! --------------------------------
-    // *get a random word!
-
-    this.currentWord = "James Madison";
-
-    //----------------------------------------
-
+    this.currentWord = this.getRandomWord();
     console.log("Loading a new game!!");
     // this function resets the model, and calls a function to get a random word
     this.currentWordArray = [];
@@ -232,6 +243,10 @@ var model = {
       }
     }
     return true;
+  },
+
+  guessesLeft: function(){
+    return this.guessesAllowed - this.incorrectGuesses;
   },
 
   isGameDone: function(){
@@ -346,7 +361,9 @@ var controller = {
     // DEBUGGING
     // console.log("The new game button was pressed");
         // resets keyboard
+    // 3.) Reset the keyboard & stats!
     view.resetKeyboard();
+    view.resetStats();
 
   },
 
@@ -387,6 +404,16 @@ var controller = {
     var correctLetters = model.correctLettersArray;
     var incorrectLetters = model.wrongLettersArray;
     view.updateKeyboard(correctLetters, incorrectLetters);
+
+    //5.) Update the view of the stats!
+    // get the array of data
+    var statsData = [
+    model.guessesLeft(),
+    ];
+    view.updateStats(statsData);
+
+
+
 
 
     // MAKE INTO A FUNCTION
