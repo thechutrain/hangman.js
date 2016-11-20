@@ -6,12 +6,22 @@ Make everything a border-box
     box-sizing: border-box;
 }
 
+
+/*
+================================
+Google Fonts!
+================================*/
+* {
+  font-family: 'Didact Gothic', sans-serif;
+  /*font-family: 'Arimo', sans-serif;*/
+}
+
 /*
 ================================
 Overall Layout - HolyGrail flexbox!!
 ================================*/
 header{
-  padding: 0em 2em 1em 2em;
+/*  padding: 0em 2em 1em 2em;*/
 }
 /*Adapted from:  https://philipwalton.github.io/solved-by-flexbox/demos/holy-grail/
 */
@@ -25,7 +35,13 @@ header{
 .HolyGrail-header,
 .HolyGrail-footer {
   flex: none; /* 2 */
-  background: #0275d8;
+  background: #53A3C5;
+  padding: 2em 2em 1em 2em;
+}
+.HolyGrail-header{
+  position: relative;
+  top: -1em;
+
 }
 
 .HolyGrail-body {
@@ -69,8 +85,26 @@ header{
 
 /*
 ================================
-HolyGrail-HEADER: keyboardContainer
+HolyGrail-HEADER: warning message
 ================================*/
+#warning-message-container{
+  /*display: none;*/
+  position: absolute;
+  z-index: 2;
+  background-color: white;
+  border-radius: 0.35em;
+  border: solid #8E2800 5px;
+  top: 0.35em;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 30em;
+  padding: 0.5em 2em 0.5em 2em;
+}
+
+.hidden{
+  display: none;
+}
 
 /*
 ================================
@@ -145,8 +179,8 @@ HolyGrail-BODY: keyboardContainer
 
 .keyboard-letter{
   border: 2px gray solid;
-  background-color: #0275d8;
-  color: white;
+  background-color: #FFF0A5;
+  color: black;
   display: inline-block;
   width: 33%;
   text-align: center;
@@ -187,7 +221,7 @@ HolyGrail-NAV: New Game Button
   border-radius: 3.5em;
 }
 #newGame:hover{
-  background: #0275d8;
+  background: #FFB03B;
   border: blue dashed 3px;
   font-weight: 600;
 }

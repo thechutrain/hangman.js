@@ -3,7 +3,7 @@
   <meta charset="UTF-8">
   <title>Hangman</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
-<!--   <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
+ <link href="https://fonts.googleapis.com/css?family=Arimo:700|Didact+Gothic" rel="stylesheet"> 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
   <link rel="stylesheet" type="text/css" href="assets/css/main.css">
@@ -11,10 +11,22 @@
 
 <body class="HolyGrail">
 
+
 <!-- Header to Page -->
-<header class="HolyGrail-header">
-  <h3>Welcome to Hangman</h3>
-  <div id="messages">Messages go here:</div>
+<header>
+
+  <!-- Warning Messages go here -->
+  <div class="hidden" id="warning-message-container">
+    <p id="warning-message">Warning message goes here!!</p>
+  </div>
+  <!-- closes warning message -->
+
+  <div class="HolyGrail-header">
+    <h3>Welcome to Hangman</h3>
+    <p>Start playing this game by pressing any letter key on your computer. Don't worry if you accidentally press an invalid key though - we won't deduct it from your guess count :)</p>
+    <div id="messages">Messages go here:</div>
+
+  </div>
 </header>
 
 <!-- Main content of Page -->

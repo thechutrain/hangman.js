@@ -10,8 +10,25 @@ var view = {
   messageElement: document.getElementById("messages"),
 
   // Methods
-  updateMessage: function(messageString){
-    this.messageElement.innerHTML = messageString;
+  updateMessage: function(messageString, warningFlag){
+    if(!warningFlag){
+      this.messageElement.innerHTML = messageString;
+    }
+    else {
+      // remove the hidden tag from the div
+      var container = document.querySelector("#warning-message-container");
+      container.className = "";
+      document.querySelector("#warning-message").innerHTML = "Warning: " + messageString;
+      // update the warning message & dissappear after 3seconds ..
+      setTimeout(function(){
+        // add the hidden tag!
+          container.className = "hidden";
+      }, 2500);
+
+    }
+    // console.log("Updating message ...");
+    // setTimeout(function(){console.log("Done!");}, 3000);
+
     // have the message disappear after 5 seconds!
     // setTimeout(function(){}, 5000);
     // console.log("Hi");
@@ -232,6 +249,7 @@ var model = {
     // Reset incorrect guesses & letters guessed duhhhh
     this.incorrectGuesses = 0;
     this.lettersGuessed = [];
+    this.userWon = false;
   },
 
   didUserWin: function(){
@@ -270,12 +288,12 @@ var model = {
     // [boolean of whether is was valid or not, "Error Message"]
     // 1.) check that its a letter
     if (event.keyCode < 65 || event.keyCode > 90){
-      view.updateMessage(event.key + " is not a letter");
+      view.updateMessage(event.key + " is not a letter", true);
       return [false, "Not a letter"];
     } 
     // 2.) check that it has not been guessed yet
     else if (this.lettersGuessed.indexOf(event.key.toUpperCase()) >= 0){
-      view.updateMessage(event.key + " was ALREADY guessed!");
+      view.updateMessage(event.key + " was ALREADY guessed!", true);
       return [false, "Already Guessed"];
     }
     // assume its a valid guess otherwise
@@ -339,10 +357,10 @@ var controller = {
       // if user won, update view
       if (model.userWon){
         console.log("You won, congrats");
-        view.updateMessage("You won, congrats");
+        view.updateMessage("You won, congrats", false);
       } else{
         console.log("Better luck next time kiddo!");
-        view.updateMessage("Better luck next time!");
+        view.updateMessage("Better luck next time!", false);
       }
       // DO NOT PROCEED because the game is done
       return false;
@@ -355,7 +373,7 @@ var controller = {
     // 1.) Tell the model to start a new game
     model.newGame();
     // 1a.) also tell the user that there's been a new word:
-    view.updateMessage("New Game - button was pressed!!");
+    view.updateMessage("New Game - button was pressed!!", true);
     // 2.) Update the view, specifically the word container / display
     view.updateWord(model.userWordArray);
     // DEBUGGING
@@ -385,7 +403,7 @@ var controller = {
     // debugger
     // console.log(validResults); // array[boolean if valid, error message]
     if (!validResults[0]){
-      view.updateMessage(validResults[1]);
+      view.updateMessage(validResults[1], true);
       // Do Not Proceed!
       return;
     }
@@ -394,10 +412,10 @@ var controller = {
     var userGuess = event.key;
     if(model.processGuess(userGuess)){
       // the user had a correct vote!
-      view.updateMessage(userGuess + " is a correct guess!");
+      view.updateMessage(userGuess + " is a correct guess!", false);
       view.updateWord(model.userWordArray);
     } else{
-      view.updateMessage("Sorry, no " + userGuess);
+      view.updateMessage("Sorry, no " + userGuess, false);
     }
 
     // 4.) Update the view of the keyboard!
