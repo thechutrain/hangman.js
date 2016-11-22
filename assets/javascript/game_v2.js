@@ -18,6 +18,8 @@ var view ={
   displayMap: function(countryNameStr){
     // takes a country name string and updates view so that it will
     // highlight that country. If no string, displays no country
+
+    // TO DO LATER!!!
   },
 
   displayFact: function(factsArray){
@@ -40,11 +42,13 @@ var view ={
       update.appendChild(li);
     }
     // 4.) append new update
+    // this.factBox.innerHTML = update;
     this.factBox.appendChild(update);
   },
 
   displayGuessesLeft: function(guessLeftNumber){
     // takes a number and displays the guesses left
+    this.guessesLeftWrapper.innerHTML = guessLeftNumber;
   },
 
   displayKeyboard: function(correctArray, incorrectArray){
@@ -53,17 +57,51 @@ var view ={
 
   },
 
-  displayMessage: function(messageString, warningBoolean){
+  displayMessage: function(messageString, messageType, setTimer){
     // will display either a success message or warning message
+    // 1) create new div element, and set the class to alert
+    var update = document.createElement("div");
+    // 2.) Switch statement on message type, add the appropriate class name
+    switch (messageType){
+      case "success":
+        update.className += "alert alert-success";
+      break;
+      case "info":
+        update.className += "alert alert-info";
+      break;
+      case "warning":
+        update.className += "alert alert-warning";
+      break;
+      case "danger":
+        update.className += "alert alert-danger";
+      break;
+    }
+    // 3.) update the message
+    update.innerHTML = messageString;
+    // 4.) update the message console
+    this.messageBox.appendChild(update);
+    // 5.) set timer to remove message
+    // 5a.) see if there is a specific time, if not set default
+    if (setTimer == undefined){
+        var setTimer = 3000;
+    }
+    // 5b.) Run the timer and remove messages with loop
+    setTimeout(function(){
+      while(this.messageBox.firstChild){
+        this.messageBox.removeChild(this.messageBox.firstChild);
+      }
+    }, setTimer);
   },
 
   displayQuestion: function(questionString){
     // will display the question for the specific country
+    this.questionWrapper.innerHTML = questionString;
 
   },
 
   displayWord: function(wordString){
     // will display the the current word
+    this.wordWrapper.innerHTML = wordString;
   },
 
 
@@ -77,7 +115,12 @@ var view ={
 
 // TESTING VIEW
 // view.displayFact(["awesome fact 1", "another awesome fact"]);
-
+// view.displayGuessesLeft(3);
+// view.displayQuestion("Which country has the largest number of timezones?");
+// view.displayWord("Un_t_d Stat_s of Am_r_ca");
+// view.displayMessage("testing", "info", 1000);
+// view.displayMessage("you did something wrong!", "warning");
+// view.displayMessage("BAD, you lost!", "danger");
 
 
 
