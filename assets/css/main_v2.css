@@ -7,3 +7,12 @@ Make everything a border-box
     font-family: 'Didact Gothic', sans-serif;
     /*border: 1px solid black;*/
 }
+
+
+/*
+================================
+Typography 
+================================*/
+.red-text {
+  color: red;
+}

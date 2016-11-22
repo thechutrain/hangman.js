@@ -19,6 +19,29 @@ var view ={
     // takes a country name string and updates view so that it will
     // highlight that country. If no string, displays no country
 
+    google.charts.load('upcoming', {'packages':['geochart']});
+    google.charts.setOnLoadCallback(drawRegionsMap);
+
+    function drawRegionsMap() {
+
+      if (countryNameStr == undefined){
+        var data = google.visualization.arrayToDataTable([
+        ["Country"],
+        ]);   
+      } else {
+        var data = google.visualization.arrayToDataTable([
+          ["Country"],
+          [countryNameStr],
+        ]);
+      }
+
+      var options = {enableRegionInteractivity: false};
+
+      var chart = new google.visualization.GeoChart(document.getElementById('worldMap'));
+
+      chart.draw(data, options);
+    }
+
   },
 
   displayFact: function(factsArray){
@@ -47,6 +70,14 @@ var view ={
 
   displayGuessesLeft: function(guessLeftNumber){
     // takes a number and displays the guesses left
+    // if the number is 0, set the color to red too!
+    // 1.) Check to see if the number is zero
+    if (guessLeftNumber <= 0){
+      this.guessesLeftWrapper.className = "red-text";
+    } else {
+      this.guessesLeftWrapper.className = "";
+    }
+    // 2.) 
     this.guessesLeftWrapper.innerHTML = guessLeftNumber;
   },
 
@@ -132,8 +163,6 @@ var view ={
     // will display the the current word
     this.wordWrapper.innerHTML = wordString;
   },
-
-
 } // closes View object
 
 // TESTING VIEW
@@ -145,9 +174,13 @@ var view ={
 // TESTING VIEW
 // view.displayFact(["awesome fact 1", "another awesome fact"]);
 // view.displayGuessesLeft(3);
+// view.displayGuessesLeft(0);
+// view.displayGuessesLeft(2);
 // view.displayQuestion("Which country has the largest number of timezones?");
 // view.displayWord("Un_t_d Stat_s of Am_r_ca");
 // view.displayMessage("testing", "info", 5000);
 // view.displayMessage("you did something wrong!", "warning");
 // view.displayMessage("BAD, you lost!", "danger");
 // view.displayKeyboard(["A", "B"], ["C"]);
+// view.displayMap("Germany");
+// view.displayMap();
