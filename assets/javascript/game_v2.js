@@ -55,6 +55,36 @@ var view ={
     // takes in 2 arrays of correct letters & incorrect letters
     // if none in both, sets everything to default
 
+    // 1.) Loop through add the buttons 
+    var lettersArray = this.keyboardBox.children;
+    // console.log(letters);
+    for (var i = 0; i < lettersArray.length; i++){
+      // console.log(lettersArray[i].getAttribute("data-letter"));
+      var button = lettersArray[i];
+      var letter = lettersArray[i].getAttribute("data-letter");
+      // console.log(button);
+      // console.log(letter);
+
+      // debugger;
+      // I.) check to see if button is a correct letter
+      if (correctArray.indexOf(letter)>=0){
+        //Ia.) add class btn btn-success
+        button.className = "btn btn-success";
+        //Ib.) add attribute disabled
+        button.setAttribute("disabled", "disabled");
+      } else if (incorrectArray.indexOf(letter)>=0){
+      // II.) Check to see if the button is incorrect letter
+        //IIa.) add class btn btn-danger
+        button.className = "btn btn-danger";
+        //IIb.) add addtribute disabled
+        button.setAttribute("disabled", "disabled");
+      } else {
+      // III.) set the button to default class
+      button.className = "btn btn-default";
+      }
+    } // closes for loop
+
+// ////////////////////////
   },
 
   displayMessage: function(messageString, messageType, setTimer){
@@ -114,13 +144,14 @@ var view ={
 // }
 
 // TESTING VIEW
-// view.displayFact(["awesome fact 1", "another awesome fact"]);
-// view.displayGuessesLeft(3);
-// view.displayQuestion("Which country has the largest number of timezones?");
-// view.displayWord("Un_t_d Stat_s of Am_r_ca");
-// view.displayMessage("testing", "info", 1000);
-// view.displayMessage("you did something wrong!", "warning");
-// view.displayMessage("BAD, you lost!", "danger");
+view.displayFact(["awesome fact 1", "another awesome fact"]);
+view.displayGuessesLeft(3);
+view.displayQuestion("Which country has the largest number of timezones?");
+view.displayWord("Un_t_d Stat_s of Am_r_ca");
+view.displayMessage("testing", "info", 5000);
+view.displayMessage("you did something wrong!", "warning");
+view.displayMessage("BAD, you lost!", "danger");
+view.displayKeyboard(["A", "B"], ["C"]);
 
 
 
