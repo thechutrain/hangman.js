@@ -1,0 +1,9 @@
+/*
+================================
+Make everything a border-box
+================================*/
+* {
+    box-sizing: border-box;
+    font-family: 'Didact Gothic', sans-serif;
+    /*border: 1px solid black;*/
+}

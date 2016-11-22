@@ -1,0 +1,104 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hangman</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+ <link href="https://fonts.googleapis.com/css?family=Arimo:700|Didact+Gothic" rel="stylesheet"> 
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="assets/css/main_v2.css">
+</head>
+
+<body>
+  <div class="container">
+
+  <!-- Top row which will contain word & stats components -->
+  <div class="row top">
+
+    <div class="col-sm-9"> Word goes here:
+        <p>Start playing this game by pressing any letter key on your computer. Don't worry if you accidentally press an invalid key though - we won't deduct it from your guess count :)</p>
+    </div>
+
+    <div class="col-sm-3">
+      
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Stats Go here:</h3>
+        </div>
+        <div class="panel-body">
+            <!-- Progress bar? -->
+            <!-- countries / total -->
+            <!-- BOX of guesses left! -->
+            <div class="center-block">
+              <h6 class="text-center">Guesses Left:</h6>
+              <h2 class="text-center"><strong>6</strong></h2>
+            </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <!-- Middle row will contain the keyboard of buttons -->
+  <div class="row middle">
+    <button class="btn btn-default"><span id="a">A</span></button>
+    <button class="btn btn-success" disabled="disabled"><span id="b">B</span></button>
+    <button class="btn btn-danger" disabled="disabled"><span id="c">C</span></button>
+    <button class="btn btn-default"><span id="d">D</span></button>
+    <button class="btn btn-default"><span id="e">E</span></button>
+    <button class="btn btn-default"><span id="f">F</span></button>
+  </div>
+
+
+
+  <!-- Bottom row will contain the map and facts component -->
+  <div class="row bottom">
+    <!-- Map Component -->
+    <div class="col-sm-6"> 
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Map Goes Here:</h3>
+        </div>
+        <div class="panel-body">
+          <div id="worldMap"></div>
+        </div>
+      </div>
+
+    </div>
+    <!-- List of Facts Component -->
+    <div class="col-sm-6"> 
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Facts go here:</h3>
+        </div>
+        <div class="panel-body">
+          <ul>
+            <li>Fact 1:</li>
+            <li>Fact 2:</li>
+          </ul>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+    
+</div><!-- closes container-fluid  -->
+
+
+
+
+
+
+
+<!-- <script type="text/javascript" src="assets/javascript/game_v2.js"></script> -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
+</script>
+<script src="assets/javascript/worldMap.js"></script>
+</body>
+</html>
