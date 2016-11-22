@@ -19,7 +19,6 @@ var view ={
     // takes a country name string and updates view so that it will
     // highlight that country. If no string, displays no country
 
-    // TO DO LATER!!!
   },
 
   displayFact: function(factsArray){
@@ -144,47 +143,11 @@ var view ={
 // }
 
 // TESTING VIEW
-view.displayFact(["awesome fact 1", "another awesome fact"]);
-view.displayGuessesLeft(3);
-view.displayQuestion("Which country has the largest number of timezones?");
-view.displayWord("Un_t_d Stat_s of Am_r_ca");
-view.displayMessage("testing", "info", 5000);
-view.displayMessage("you did something wrong!", "warning");
-view.displayMessage("BAD, you lost!", "danger");
-view.displayKeyboard(["A", "B"], ["C"]);
-
-
-
-
-
-
-/*
-============================================================
-Model
-============================================================
-1.) keeps track of overall game stats
-2.) keeps track of word
-3.) keeps track of user guesses
-4.) checks to see if guess is correct or not
-*/
-
-
-
-/*
-============================================================
-Controller
-============================================================
-1.) will update the keyboard GUI
-2.) send message to user
-*/
-
-/*
-============================================================
-Set up the event listener!!
-============================================================
-*/
-
-
-
-
-
+// view.displayFact(["awesome fact 1", "another awesome fact"]);
+// view.displayGuessesLeft(3);
+// view.displayQuestion("Which country has the largest number of timezones?");
+// view.displayWord("Un_t_d Stat_s of Am_r_ca");
+// view.displayMessage("testing", "info", 5000);
+// view.displayMessage("you did something wrong!", "warning");
+// view.displayMessage("BAD, you lost!", "danger");
+// view.displayKeyboard(["A", "B"], ["C"]);
