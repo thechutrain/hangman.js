@@ -1,7 +1,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Hangman</title>
+  <title> Alan | Hangman</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
  <link href="https://fonts.googleapis.com/css?family=Arimo:700|Didact+Gothic" rel="stylesheet"> 
 <!-- Latest compiled and minified CSS -->
@@ -12,12 +12,29 @@
 <body>
   <div class="container">
 
+
+
   <!-- Top row which will contain word & stats components -->
   <div class="row top">
 
-    <div class="col-sm-9"> Word goes here:
+    <div class="col-sm-9"> 
+        <h2>Atlas's Hangman - the world is in your hands!</h2>
+        <p>Directions:</p>
         <p>Start playing this game by pressing any letter key on your computer. Don't worry if you accidentally press an invalid key though - we won't deduct it from your guess count :)</p>
+
+    <div class="row word-question-container">
+        <div class="col-sm-11 col-sm-offset-1">
+          <h3><span id="questionBox">Question goes here</span></h3>
+        </div>   
+        <div class="col-sm-11 col-sm-offset-1">
+          <h3><span id="wordBox">WORD display goes here</span></h3>
+        </div>    
     </div>
+
+
+    </div>
+
+
 
     <div class="col-sm-3">
       
@@ -29,12 +46,16 @@
             <!-- Progress bar? -->
             <!-- countries / total -->
             <!-- BOX of guesses left! -->
-            <div class="center-block">
               <h6 class="text-center">Guesses Left:</h6>
-              <h2 class="text-center"><strong>6</strong></h2>
-            </div>
+              <h2 class="text-center"><span id="guessesLeftWrapper">7</span></h2>
+
         </div>
       </div>
+
+      <div id="messageBox">
+          <div class="alert alert-success" role="alert">Correct! Nice job!</div>        
+      </div>
+
 
     </div>
   </div>
@@ -43,12 +64,20 @@
 
   <!-- Middle row will contain the keyboard of buttons -->
   <div class="row middle">
-    <button class="btn btn-default"><span id="a">A</span></button>
-    <button class="btn btn-success" disabled="disabled"><span id="b">B</span></button>
-    <button class="btn btn-danger" disabled="disabled"><span id="c">C</span></button>
-    <button class="btn btn-default"><span id="d">D</span></button>
-    <button class="btn btn-default"><span id="e">E</span></button>
-    <button class="btn btn-default"><span id="f">F</span></button>
+    <div class="col-sm-12" id="keyboardBox">
+      <button class="btn btn-default" data-letter="A"><span id="a">A</span></button>
+      <button class="btn btn-success" disabled="disabled"><span id="b">B</span></button>
+      <button class="btn btn-danger" disabled="disabled"><span id="c">C</span></button>
+      <button class="btn btn-default"><span id="d">D</span></button>
+      <button class="btn btn-default"><span id="e">E</span></button>
+      <button class="btn btn-default"><span id="f">F</span></button>
+      <button class="btn btn-default"><span id="a">A</span></button>
+      <button class="btn btn-success" disabled="disabled"><span id="b">B</span></button>
+      <button class="btn btn-danger" disabled="disabled"><span id="c">C</span></button>
+      <button class="btn btn-default"><span id="d">D</span></button>
+      <button class="btn btn-default"><span id="e">E</span></button>
+      <button class="btn btn-default"><span id="f">F</span></button>
+    </div>
   </div>
 
 
@@ -56,7 +85,7 @@
   <!-- Bottom row will contain the map and facts component -->
   <div class="row bottom">
     <!-- Map Component -->
-    <div class="col-sm-6"> 
+    <div class="col-sm-7"> 
 
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -69,13 +98,13 @@
 
     </div>
     <!-- List of Facts Component -->
-    <div class="col-sm-6"> 
+    <div class="col-sm-5"> 
 
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Facts go here:</h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body" id="factBox">
           <ul>
             <li>Fact 1:</li>
             <li>Fact 2:</li>
@@ -96,7 +125,7 @@
 
 
 
-<!-- <script type="text/javascript" src="assets/javascript/game_v2.js"></script> -->
+<script type="text/javascript" src="assets/javascript/game_v2.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
 </script>
 <script src="assets/javascript/worldMap.js"></script>
