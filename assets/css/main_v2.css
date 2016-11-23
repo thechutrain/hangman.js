@@ -29,3 +29,8 @@ button.btn{
   font-stretch: expanded;
 /*  overflow: hidden;*/
 }
+
+#messageBox {
+  border: 1px solid black;
+  min-height: 20em;
+}

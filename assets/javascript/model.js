@@ -198,7 +198,8 @@ var model = {
         return false;
       }
     }
-    // 2.) else return true
+    // 2.) Assume the User did win!
+    this.userWins ++;
     return true;
 
   },

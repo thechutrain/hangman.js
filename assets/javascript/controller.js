@@ -8,6 +8,7 @@ Controller
 var controller = {
   initializeGame: function(){
     model.initializeGame();
+    view.displayMap();
     this.updateView();
     view.displayMessage("success", "New Game", 1000);
   },
@@ -15,6 +16,7 @@ var controller = {
   newCountry: function(){
     model.newCountry();
     this.updateView();
+    view.displayMap();
     // console.log(this);
     view.displayMessage("success", "New Country", 3500);
   },
@@ -29,7 +31,8 @@ var controller = {
   view.displayWord(model.userWordArray);
   //4.) display the question
   view.displayQuestion(model.currentCountryObject["question"]);
-
+  //5.) update wins
+  view.displayTotalCorrect(model.userWins);
   },
 
   showAnswer: function(){
@@ -42,10 +45,20 @@ var controller = {
   view.displayFact(model.currentCountryObject["facts"]);
   // 3.) display the country
   view.displayWord(model.currentWordArray);
+  //4.) update wins
+  view.displayTotalCorrect(model.userWins);
   },
 
-  processGuess: function(){
-  var guess = this.getAttribute("data-letter");
+  processGuess: function(guess){
+  // check to see if the button is the skip button!
+  // if (this.getAttribute("data-letter")=="invalid"){
+  //   console.log("Not a letter");
+  //   return;
+  // }
+
+  // var guess = this.getAttribute("data-letter");
+
+  var guess = guess.toUpperCase();
   // 1.) Check if the letter is a valid guess
   //1a.) Get array from validGuess method
   var validatorResults = model.validGuess(guess);
@@ -90,6 +103,31 @@ var controller = {
     }
   },
 
+  keyupEventListener: function(event){
+    // console.log(event);
+    if (event.keyCode < 65 || event.keyCode > 90){
+      view.displayMessage("warning", "\"" + event.key + "\"" + " is not a letter");
+      return false;
+    } else {
+      controller.processGuess(event.key);
+    }
+  },
+
+  buttonEventListener: function(event){
+    // console.log(event);
+    var letter = event.toElement.childNodes[0].data;
+    // console.log(typeof(letter));
+    if (letter == "Skip"){
+      controller.newCountry();
+      console.log("New country");
+      return false;
+      // controller.newGame();
+    } else {
+      controller.processGuess(letter);
+    }
+
+  },
+
 };
 
 
@@ -99,27 +137,24 @@ Set up the event listener!!
 ============================================================
 */
 
-// Event listeners for loading the page & for the skip button
+// Create an event listener for when the page loads, it initializes the game
 window.addEventListener("load", controller.initializeGame.bind(controller));
-document.querySelector(".skip").addEventListener("click", controller.newCountry.bind(controller));
+
+// create an event listener for when the skip button is clicked
+// document.querySelector(".skip").addEventListener("click", controller.newCountry.bind(controller));
+
+// Create an event listener for when a keyboard button is pressed
+document.addEventListener("keyup", controller.keyupEventListener);
 
 // ** Add event listener for each button 
 //1) first get all the buttons
 var allButtons = document.querySelectorAll(".btn-default");
-
 // 2) loop through each button and add the event listener
 for (var i = 0; i < allButtons.length; i++){
-  allButtons[i].addEventListener("click", controller.processGuess);
+  allButtons[i].addEventListener("click", controller.buttonEventListener);
 }
 
-  // 2a) all the eventlistener indiviually
-// document.querySelectorAll("button").addEventListener("click", processGuess);
 
-// document.querySelector(".skip").addEventListener("click", test);
-
-// document.querySelector(".btn").addEventListener("click", test);
-// var allButtons = document.querySelectorAll(".btn");
-// console.log(allButtons);
 /*
 ============================================================
 TESTING !!!!

@@ -14,6 +14,7 @@ var view ={
   // STATS related
   // statsBox: document.querySelector("#statsBox"),
   guessesLeftWrapper: document.querySelector("#guessesLeftWrapper"),
+  totalCorrectWrapper: document.querySelector("#totalCorrectWrapper"),
 
   // View - methods
   displayMap: function(countryNameStr){
@@ -190,6 +191,10 @@ var view ={
         this.wordWrapper.innerHTML = wordString;
   },
 
+  displayTotalCorrect: function(number){
+    this.totalCorrectWrapper.innerHTML = number;
+  },
+
   // displayWord: function(wordString){
   //   // will display the the current word
   //   this.wordWrapper.innerHTML = wordString;
@@ -203,6 +208,7 @@ var view ={
 // }
 
 // TESTING VIEW
+// view.displayTotalCorrect(4);
 // view.displayFact(["awesome fact 1", "another awesome fact"]);
 // view.displayGuessesLeft(3);
 // view.displayGuessesLeft(1);

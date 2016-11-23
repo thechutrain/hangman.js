@@ -19,13 +19,13 @@
   <div class="row top">
 
     <div class="col-sm-9"> 
-        <h2>Atlas's Hangman - the world is in your hands!</h2>
+        <h2>Atlas's Hangman</h2>
         <p>Directions:</p>
         <p>Start playing this game by pressing any letter key on your computer. Don't worry if you accidentally press an invalid key though - we won't deduct it from your guess count :)</p>
 
     <div class="row word-question-container">
         <div class="col-sm-11 col-sm-offset-1">
-          <h3><span id="questionBox">Question goes here</span>            <button class="btn btn-default skip">Skip</button></h3>
+          <h3><span id="questionBox">Question goes here</span>            <button class="btn btn-default skip" data-letter="invalid">Skip</button></h3>
 
         </div>   
         <div class="col-sm-11 col-sm-offset-1">
@@ -33,7 +33,7 @@
         </div>    
     </div>
 
-      <div class="row">
+      <div class="row keyboard-wrapper">
         
         <div class="col-sm-9" id="keyboardBox">
           <button class="btn btn-default" data-letter="A">A</button>
@@ -81,7 +81,7 @@
             <!-- countries / total -->
             <!-- BOX of guesses left! -->
             <h6 class="text-center"> Total Correct:</h6>
-            <h4 class="text-center">0</h4>
+            <h4 class="text-center"><span id="totalCorrectWrapper">0</span></h4>
 
             <h6 class="text-center">Time left:</h6>
             <h4 class="text-center">1:23</h4>
@@ -99,14 +99,6 @@
 
     </div>
   </div>
-
-
-
-  <!-- Middle row will contain the keyboard of buttons -->
-  <div class="row middle">
-    
-  </div>
-
 
 
   <!-- Bottom row will contain the map and facts component -->
@@ -146,8 +138,10 @@
     
 </div><!-- closes container-fluid  -->
 
-<footer class="footer"> &copy; Alan Chu 
-  <p>Original game: <a href="index.html">link</a></p>
+<footer class="footer text-center"> <p>"Let's Make Learning Fun" 
+<br> &copy; Alan Chu 
+<br>
+  Original game: <a href="index.html">link</a></p>
 </footer>
 
 
