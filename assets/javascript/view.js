@@ -141,6 +141,7 @@ var view ={
     }
     // 3.) update the message
     update.innerHTML = messageString;
+    // console.log(update);
     // 4.) update the message console
     this.messageBox.appendChild(update);
     // 5.) set timer to remove message
@@ -150,9 +151,7 @@ var view ={
     }
     // 5b.) Run the timer and remove messages with loop
     setTimeout(function(){
-      while(this.messageBox.firstChild){
-        this.messageBox.removeChild(this.messageBox.firstChild);
-      }
+      this.messageBox.firstChild.nextElementSibling.remove();
     }, setTimer);
   },
 

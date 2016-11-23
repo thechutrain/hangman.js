@@ -16,7 +16,7 @@ var controller = {
     model.newCountry();
     this.updateView();
     // console.log(this);
-    view.displayMessage("success", "New Country", 1500);
+    view.displayMessage("success", "New Country", 3500);
   },
 
   updateView: function(){
@@ -64,20 +64,32 @@ var controller = {
       view.displayMessage("success", "\'" + guess + "\'" + " was found");
       //2B) update the view of the word
       controller.updateView();
-
   // 2C.) Check if the user WON
-    // TO DO
-    console.log(model.userWin());
+    if (model.userWin()){
+      // tell the user they won!
+      console.log("YOU won!");
+      view.displayMessage("success", "Congratulations, you got the country!");
+      // display add the facts etc.
+      controller.showAnswer();
+      // freeze game - TO DO
+    }
   } else {
     // 3A) If the letter is not Correct
      view.displayMessage("danger", "\'" + guess + "\'" + " was NOT found");
      // 3B) update the view of keyboard
     controller.updateView();
      // 3C) Check if Loser LOST
-     // TO DO
-  }
-
+     if (model.userLost()){
+      // tell the user they lost
+      console.log("You lost!");
+      view.displayMessage("danger", "You're out of guesses. Better luck next time!", 8000);
+      // display facts 
+      controller.showAnswer();
+      // freeze game - TO DO
+     }
+    }
   },
+
 };
 
 

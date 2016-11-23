@@ -16,7 +16,7 @@ var countryData = [
     "countryName": "Canada",
     "question": "What country is north of us?",
     "population": "36,286,378" ,
-    "facts": ["fact 1 canada", "fact 2 canada"],
+    "facts": ["fact 1 canada - canada is cool", "fact 2 canada"],
     "sourcesFact": ["source fact 1 canada", "source fact 2 canada"],
     "wiki_url": "https://en.wikipedia.org/wiki/Canada",
   },
@@ -203,9 +203,13 @@ var model = {
 
   },
 
-  userLose: function(){
+  userLost: function(){
     // this function checks to see if the user lost
     // returns Boolean
+    if (this.guessesLeft <= 0){
+      return true;
+    }
+    return false;
   },
 
 }
