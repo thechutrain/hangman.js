@@ -7,12 +7,13 @@ var view ={
   // view - Properties, all are DOM variables
   mapBox: document.querySelector("#worldMap"),
   factBox: document.querySelector("#factBox"),
-  // statsBox: document.querySelector("#statsBox"),
-  guessesLeftWrapper: document.querySelector("#guessesLeftWrapper"),
   keyboardBox: document.querySelector("#keyboardBox"),
   messageBox: document.querySelector("#messageBox"),
   questionWrapper: document.querySelector("#questionBox"),
   wordWrapper: document.querySelector("#wordBox"),
+  // STATS related
+  // statsBox: document.querySelector("#statsBox"),
+  guessesLeftWrapper: document.querySelector("#guessesLeftWrapper"),
 
   // View - methods
   displayMap: function(countryNameStr){
@@ -159,10 +160,39 @@ var view ={
 
   },
 
-  displayWord: function(wordString){
+  displayWord: function(wordArray){
     // will display the the current word
-    this.wordWrapper.innerHTML = wordString;
+    var wordString = "";
+    for (var i=0; i < wordArray.length; i++){
+      switch(wordArray[i]){
+        case "":
+        wordString+="___";
+        // console.log("underscore");
+        break;
+        case "//":
+        wordString+="&nbsp;&nbsp;";
+        // console.log("//");
+        break;
+        default:
+        wordString+=wordArray[i].toUpperCase();
+        // console.log("letter");
+        break;
+      }
+    }
+    // console.log(wordString);
+    // this.wordWrapper.innerHTML = "<p>" + wordString.toUpperCase() + "</p>";
+    // var test = "<p>" + wordString + "</p>";
+    // var test = wordString;
+
+    // console.log(test);
+    // console.log("<p>Hi &nbsp&nbsp&nbsp&nbsp world hello <br>test<p>");
+        this.wordWrapper.innerHTML = wordString;
   },
+
+  // displayWord: function(wordString){
+  //   // will display the the current word
+  //   this.wordWrapper.innerHTML = wordString;
+  // },
 } // closes View object
 
 // TESTING VIEW
@@ -174,13 +204,15 @@ var view ={
 // TESTING VIEW
 // view.displayFact(["awesome fact 1", "another awesome fact"]);
 // view.displayGuessesLeft(3);
-// view.displayGuessesLeft(0);
+view.displayGuessesLeft(1);
 // view.displayGuessesLeft(2);
 // view.displayQuestion("Which country has the largest number of timezones?");
 // view.displayWord("Un_t_d Stat_s of Am_r_ca");
+view.displayWord(["a", "", "A", "//", "A", "A"]);
 // view.displayMessage("testing", "info", 5000);
 // view.displayMessage("you did something wrong!", "warning");
 // view.displayMessage("BAD, you lost!", "danger");
 // view.displayKeyboard(["A", "B"], ["C"]);
-// view.displayMap("Germany");
+view.displayMap("France");
+// console.log("France");
 // view.displayMap();
