@@ -3,7 +3,8 @@
   <meta charset="UTF-8">
   <title> Alan | Hangman</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
- <link href="https://fonts.googleapis.com/css?family=Arimo:700|Didact+Gothic" rel="stylesheet"> 
+ <link href="https://fonts.googleapis.com/css?family=Arimo:700|Didact+Gothic" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css?family=Arvo:700" rel="stylesheet"> 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="assets/css/main_v2.css">
@@ -46,6 +47,12 @@
             <!-- Progress bar? -->
             <!-- countries / total -->
             <!-- BOX of guesses left! -->
+            <h6 class="text-center"> Total Correct:</h6>
+            <h4 class="text-center">0</h4>
+
+            <h6 class="text-center">Time left:</h6>
+            <h4 class="text-center">1:23</h4>
+              
               <h6 class="text-center">Guesses Left:</h6>
               <h2 class="text-center"><span id="guessesLeftWrapper">7</span></h2>
 
@@ -64,14 +71,23 @@
 
   <!-- Middle row will contain the keyboard of buttons -->
   <div class="row middle">
-    <div class="col-sm-12" id="keyboardBox">
-      <button class="btn btn-default" data-letter="A"><span id="a">A</span></button>
-      <button class="btn btn-success" disabled="disabled"data-letter="B"><span id="b">B</span></button>
-      <button class="btn btn-danger" disabled="disabled"data-letter="C"><span id="c">C</span></button>
-      <button class="btn btn-default" data-letter="D"><span id="d">D</span></button>
-      <button class="btn btn-default" data-letter="E"><span id="e">E</span></button>
-      <button class="btn btn-default" data-letter="F"><span id="f">F</span></button>
-    
+    <div class="col-sm-9" id="keyboardBox">
+      <button class="btn btn-default" data-letter="A">A</button>
+      <button class="btn btn-success" disabled="disabled" data-letter="B">B</button>
+      <button class="btn btn-danger" disabled="disabled" data-letter="C">C</button>
+      <button class="btn btn-default" data-letter="D">D</button>
+      <button class="btn btn-default" data-letter="E">E</button>
+      <button class="btn btn-default" data-letter="F">F</button>
+      <button class="btn btn-default" data-letter="G">G</button>
+      <button class="btn btn-default" data-letter="H">H</button>
+      <button class="btn btn-default" data-letter="I">I</button>
+      <button class="btn btn-default" data-letter="J">J</button>
+      <button class="btn btn-default" data-letter="K">K</button>      
+      <button class="btn btn-default" data-letter="L">L</button>
+      <button class="btn btn-default" data-letter="M">M</button>  
+      <button class="btn btn-default" data-letter="N">N</button>
+      <button class="btn btn-default" data-letter="O">O</button>
+      <button class="btn btn-default" data-letter="P">P</button>
     </div>
   </div>
 
