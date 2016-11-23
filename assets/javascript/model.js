@@ -112,12 +112,11 @@ var model = {
     // console.log(this.currentCountryObject);
   // 3.) get the country name
     this.currentWord = this.currentCountryObject["countryName"];
-    console.log(this.currentWord);
+    // console.log(this.currentWord);
 
     //3a.) arrayfiy the country name
     this.currentWordArray = arrayifyWord(this.currentWord, true);
     this.userWordArray = arrayifyWord(this.currentWord, false);
-
   },
 
 

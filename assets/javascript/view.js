@@ -165,16 +165,16 @@ var view ={
     var wordString = "";
     for (var i=0; i < wordArray.length; i++){
       switch(wordArray[i]){
-        case "":
-        wordString+="___";
+        case " ":
+        wordString+="_&nbsp;";
         // console.log("underscore");
         break;
         case "//":
-        wordString+="&nbsp;&nbsp;";
+        wordString+="&nbsp;&nbsp;&nbsp;";
         // console.log("//");
         break;
         default:
-        wordString+=wordArray[i].toUpperCase();
+        wordString+= (wordArray[i].toUpperCase() + "&nbsp;");
         // console.log("letter");
         break;
       }
@@ -213,6 +213,6 @@ view.displayWord(["a", "", "A", "//", "A", "A"]);
 // view.displayMessage("you did something wrong!", "warning");
 // view.displayMessage("BAD, you lost!", "danger");
 // view.displayKeyboard(["A", "B"], ["C"]);
-view.displayMap("France");
+// view.displayMap("France");
 // console.log("France");
 // view.displayMap();

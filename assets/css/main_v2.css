@@ -25,5 +25,7 @@ button.btn{
   /*font-family: 'Arvo', serif;*/
   font-size: 40px;
   font-weight: 700;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.02em;
+  font-stretch: expanded;
+/*  overflow: hidden;*/
 }
