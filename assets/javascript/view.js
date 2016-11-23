@@ -112,6 +112,8 @@ var view ={
       } else {
       // III.) set the button to default class
       button.className = "btn btn-default";
+      // delete button[disabled];
+      button.disabled = false;
       }
     } // closes for loop
 

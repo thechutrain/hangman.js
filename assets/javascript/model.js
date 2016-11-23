@@ -22,7 +22,7 @@ var countryData = [
   },
   {
   "countryName": "Mexico",
-  "question": "What country was is south of us?",
+  "question": "What country is south of us?",
   "population": "128,632,004  " ,
   "facts": ["fact 1 mexico", "fact 2 mexico"],
   "sourcesFact": ["source fact 1 mexico", "source fact 2 mexico"],
@@ -42,11 +42,11 @@ var model = {
   // Properties of hangman round
   guessesAllowed: 7,
   guessesLeft: 3,
-  correctLettersArray: ["A"],
+  correctLettersArray: ["F"],
   incorrectLettersArray: ["B"],
-  currentWord: "As A",
-  currentWordArray: ["A", "S", "//", "A"],
-  userWordArray: ["A", "", "//", "A"],
+  currentWord: "France",
+  currentWordArray: ["F", "R", "A", "N", "C", "E"],
+  userWordArray: ["", "", "//", ""],
   // Hold onto the current country object temporarily
   currentCountryObject: {},
   // TO DO: keep an array of indices of chosen countries etc .
@@ -75,7 +75,7 @@ var model = {
           returnArray.push("//");
         } else if (showLettersBool){
           // console.log(word[index]);
-          returnArray.push(word[index]);
+          returnArray.push(word[index].toUpperCase());
         } else{
           // console.log(word[index]);
           returnArray.push(" ");
@@ -95,6 +95,7 @@ var model = {
       this.currentWord = "";
       this.currentWordArray = [];
       this.userWordArray = [];
+      this.currentCountryObject = {};
     
   // II.) GET A NEW COUNTRY
 
@@ -108,8 +109,15 @@ var model = {
     // console.log(index);
 
   // 2.) Make a copy of the country object inside model
-    this.currentCountryObject = countryData[index];
+    // this.currentCountryObject = countryData[index];
     // console.log(this.currentCountryObject);
+    var country = countryData[index]; 
+    for (key in country){
+      this.currentCountryObject[key] = country[key];
+    }
+
+    // console.log(this.currentCountryObject);
+
   // 3.) get the country name
     this.currentWord = this.currentCountryObject["countryName"];
     // console.log(this.currentWord);
@@ -136,16 +144,43 @@ var model = {
     // incorrectLetters / correctLetters Array
     else if(this.correctLettersArray.indexOf(letter)>= 0 || 
       this.incorrectLettersArray.indexOf(letter)>=0){
-      return ["danger", "\"" + letter + "\"" + " was already guessed"];
+      return ["warning", "\"" + letter + "\"" + " was already guessed"];
     } else{
     // else return success array
     return ["success", "Valid letter"];
     }
   },
 
-  checkGuessedLetter: function(){
+  checkGuess: function(guess){
+    // return trues if letter is in the word, false if its not
+    // console.log(this.currentWord);
+    var letter = guess.toUpperCase();
+    // 1.) check to see if the letter is in the word
+    if (this.currentWordArray.indexOf(letter)>=0){
+      //1a.) if yes, loop through currentWord array 
+      // & update userWordArray for whenenver the letter is that!
+      for (var i =0; i < this.currentWordArray.length; i++){
+        // check to see if the letter matches
+        // console.log(this.currentWordArray[i]);
+        if (this.currentWordArray[i]==letter){
+          this.userWordArray[i] = letter;
+        }
+      }
+      // 1b) add the correct letter to the correct letters array
+      this.correctLettersArray.push(letter);
+      return true;
+    } else{
+    // 2.) letter is not in the word
+      //2a) take 1 off of the guessesLeft
+      this.guessesLeft --;
+      // 2b) add the incorrect letter to the incorrect letters array
+      this.incorrectLettersArray.push(letter);
+      //2c) return false
+      return false;
+    }
 
   },
+
   userWin: function(){
     // this function checks to see if the user won
     // returns Boolean
@@ -165,9 +200,13 @@ var model = {
 // model.initializeGame();
 
 // var result = model.validGuess("/");
-var result = model.validGuess("C");
-console.log(result);
-view.displayMessage(result[0], result[1]);
+// var result = model.validGuess("C");
+// console.log(result);
+// view.displayMessage(result[0], result[1]);
+
+// console.log(model.userWordArray);
+// model.processGuess("b");
+// console.log(model.userWordArray);
 
 
 // TESTING MODEL
