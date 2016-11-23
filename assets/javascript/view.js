@@ -206,11 +206,11 @@ var view ={
 // TESTING VIEW
 // view.displayFact(["awesome fact 1", "another awesome fact"]);
 // view.displayGuessesLeft(3);
-view.displayGuessesLeft(1);
+// view.displayGuessesLeft(1);
 // view.displayGuessesLeft(2);
 // view.displayQuestion("Which country has the largest number of timezones?");
 // view.displayWord("Un_t_d Stat_s of Am_r_ca");
-view.displayWord(["a", "", "A", "//", "A", "A"]);
+// view.displayWord(["a", "", "A", "//", "A", "A"]);
 // view.displayMessage("testing", "info", 5000);
 // view.displayMessage("you did something wrong!", "warning");
 // view.displayMessage("BAD, you lost!", "danger");

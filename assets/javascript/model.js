@@ -14,7 +14,7 @@ var countryData = [
   },
   {
     "countryName": "Canada",
-    "question": "What country was is north of us?",
+    "question": "What country is north of us?",
     "population": "36,286,378" ,
     "facts": ["fact 1 canada", "fact 2 canada"],
     "sourcesFact": ["source fact 1 canada", "source fact 2 canada"],
@@ -50,7 +50,7 @@ var model = {
   // Hold onto the current country object temporarily
   currentCountryObject: {},
   // TO DO: keep an array of indices of chosen countries etc .
-  indexChoices: [0,1,2],
+  // indexChoices: [0,1,2],
 
 
 
@@ -60,6 +60,11 @@ var model = {
     // this function creates the indexChoices, resets all the variables,
     // and also calls the new country function
     this.newCountry();
+
+    console.log("GAME INITIALIZED!");
+    console.log(model);
+    console.log(" --- END of models.initializeGame --- ");
+
   },
 
 
@@ -102,8 +107,9 @@ var model = {
   // 1.) Pop the last country from the array
   // * FUTURE / TO DO! --> get a random country
   // 1a) get a random index & remove it
-    var index = Math.floor(Math.random() * this.indexChoices.length);
-    this.indexChoices.splice(index, 1);
+    var index = Math.floor(Math.random() * countryData.length);
+    // var index = Math.floor(Math.random() * this.indexChoices.length);
+    // this.indexChoices.splice(index, 1);
     // console.log("Index chosen:" + index);
     // console.log(this.indexChoices);
     // console.log(index);
@@ -168,6 +174,7 @@ var model = {
       }
       // 1b) add the correct letter to the correct letters array
       this.correctLettersArray.push(letter);
+      // console.log(this.correctLettersArray);
       return true;
     } else{
     // 2.) letter is not in the word
@@ -184,6 +191,16 @@ var model = {
   userWin: function(){
     // this function checks to see if the user won
     // returns Boolean
+    // 1) Loop through the array of the user word
+    for (var i=0; i < this.currentWordArray.length; i++){
+    // if a letter doesn't equal, return false
+      if (this.userWordArray[i] != this.currentWordArray[i]){
+        return false;
+      }
+    }
+    // 2.) else return true
+    return true;
+
   },
 
   userLose: function(){

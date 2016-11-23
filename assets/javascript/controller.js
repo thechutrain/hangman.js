@@ -6,6 +6,19 @@ Controller
 2.) send message to user
 */
 var controller = {
+  initializeGame: function(){
+    model.initializeGame();
+    this.updateView();
+    view.displayMessage("success", "New Game", 1000);
+  },
+
+  newCountry: function(){
+    model.newCountry();
+    this.updateView();
+    // console.log(this);
+    view.displayMessage("success", "New Country", 1500);
+  },
+
   updateView: function(){
   // takes the most up to date model properties, and invokes
   // 1) Update GuessesLeft
@@ -29,7 +42,42 @@ var controller = {
   view.displayFact(model.currentCountryObject["facts"]);
   // 3.) display the country
   view.displayWord(model.currentWordArray);
+  },
+
+  processGuess: function(){
+  var guess = this.getAttribute("data-letter");
+  // 1.) Check if the letter is a valid guess
+  //1a.) Get array from validGuess method
+  var validatorResults = model.validGuess(guess);
+  // 1b) check to see if it passed or not (first element will be success)
+  if (validatorResults[0] != "success"){
+    // if it didn't pass, display the error message
+    view.displayMessage(validatorResults[0], validatorResults[1]);
+    return;
   }
+
+// 2.) Process the guess / check if the letter is in word
+  // console.log(model.checkGuess(guess));
+  if (model.checkGuess(guess)){
+  // 2A.) If the letter is Correct
+      // display the success message
+      view.displayMessage("success", "\'" + guess + "\'" + " was found");
+      //2B) update the view of the word
+      controller.updateView();
+
+  // 2C.) Check if the user WON
+    // TO DO
+    console.log(model.userWin());
+  } else {
+    // 3A) If the letter is not Correct
+     view.displayMessage("danger", "\'" + guess + "\'" + " was NOT found");
+     // 3B) update the view of keyboard
+    controller.updateView();
+     // 3C) Check if Loser LOST
+     // TO DO
+  }
+
+  },
 };
 
 
@@ -39,44 +87,27 @@ Set up the event listener!!
 ============================================================
 */
 
-function processGuess(){
+// Event listeners for loading the page & for the skip button
+window.addEventListener("load", controller.initializeGame.bind(controller));
+document.querySelector(".skip").addEventListener("click", controller.newCountry.bind(controller));
 
-  // 1.) Get the letter the User entered: either through button or key
-  var guess = "d".toUpperCase();
+// ** Add event listener for each button 
+//1) first get all the buttons
+var allButtons = document.querySelectorAll(".btn-default");
 
-// 2.) Check if the letter is a valid guess
-  //2a.) Get array from validGuess method
-  var validatorResults = model.validGuess(guess);
-  // 2b) check to see if it passed or not (first element will be success)
-  if (validatorResults[0] != "success"){
-    // if it didn't pass, display the error message
-    view.displayMessage(validatorResults[0], validatorResults[1]);
-    return false;
-  }
-
-// 3.) Process the guess / check if the letter is in word
-  // console.log(model.checkGuess(guess));
-  if (model.checkGuess(guess)){
-  // 3A.) If the letter is Correct
-      // display the success message
-      view.displayMessage("success", "\'" + guess + "\'" + " was found");
-      // update the view of the word
-
-  // 3B.) Check if the user WON
-  } else {
-    // 3B) If the letter is not Correct
-     view.displayMessage("danger", "\'" + guess + "\'" + " was NOT found");
-     // 3B) Check if Loser LOST
-  }
-
-
+// 2) loop through each button and add the event listener
+for (var i = 0; i < allButtons.length; i++){
+  allButtons[i].addEventListener("click", controller.processGuess);
 }
-model.initializeGame();
-controller.updateView();
-processGuess();
-controller.updateView();
-// controller.showAnswer();
 
+  // 2a) all the eventlistener indiviually
+// document.querySelectorAll("button").addEventListener("click", processGuess);
+
+// document.querySelector(".skip").addEventListener("click", test);
+
+// document.querySelector(".btn").addEventListener("click", test);
+// var allButtons = document.querySelectorAll(".btn");
+// console.log(allButtons);
 /*
 ============================================================
 TESTING !!!!
@@ -87,3 +118,11 @@ TESTING !!!!
 // console.log(model.currentWordArray);
 // view.displayWord(["C", " ", "N", " ", "//", "D"]);
 // view.displayWord(model.userWordArray);
+
+// model.initializeGame();
+// controller.updateView();
+// processGuess();
+// controller.updateView();
+// controller.showAnswer();
+
+
