@@ -118,7 +118,7 @@ var view ={
 // ////////////////////////
   },
 
-  displayMessage: function(messageString, messageType, setTimer){
+  displayMessage: function(messageType, messageString, setTimer){
     // will display either a success message or warning message
     // 1) create new div element, and set the class to alert
     var update = document.createElement("div");

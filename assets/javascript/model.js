@@ -119,6 +119,42 @@ var model = {
     this.userWordArray = arrayifyWord(this.currentWord, false);
   },
 
+  // helper methods
+  validGuess: function(guess){
+    // checks if it is a valid letter to guess
+    // returns an array ["messageType", "messageString"]
+    var letter = guess.toUpperCase();
+    // 1.) check if it is a letter
+    var alphabetArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I",
+    "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V",
+    "W", "X", "Y", "Z"];
+    if (alphabetArray.indexOf(letter)<0){
+      return ["warning", "\"" + letter + "\"" + " is not a valid letter"];
+    }
+
+    // 2.) check to see if it is already in the 
+    // incorrectLetters / correctLetters Array
+    else if(this.correctLettersArray.indexOf(letter)>= 0 || 
+      this.incorrectLettersArray.indexOf(letter)>=0){
+      return ["danger", "\"" + letter + "\"" + " was already guessed"];
+    } else{
+    // else return success array
+    return ["success", "Valid letter"];
+    }
+  },
+
+  checkGuessedLetter: function(){
+
+  },
+  userWin: function(){
+    // this function checks to see if the user won
+    // returns Boolean
+  },
+
+  userLose: function(){
+    // this function checks to see if the user lost
+    // returns Boolean
+  },
 
 }
 
@@ -126,20 +162,26 @@ var model = {
 // console.log(countryData.length); // prints 3
 // console.log(countryData.pop());
 // model.newCountry();
-model.initializeGame();
+// model.initializeGame();
+
+// var result = model.validGuess("/");
+var result = model.validGuess("C");
+console.log(result);
+view.displayMessage(result[0], result[1]);
+
 
 // TESTING MODEL
-for (x in model){
-  if (typeof(model[x])=="function"){
-    // console.log("--------");
-    // console.log("Calling function...." );
-    // model[x]();
-    // console.log("--------");
-  } else{
-    console.log(x + ": " + model[x]);
-    console.log("--------");
-  }
-}
+// for (x in model){
+//   if (typeof(model[x])=="function"){
+//     // console.log("--------");
+//     // console.log("Calling function...." );
+//     // model[x]();
+//     // console.log("--------");
+//   } else{
+//     console.log(x + ": " + model[x]);
+//     console.log("--------");
+//   }
+// }
 
 
 
