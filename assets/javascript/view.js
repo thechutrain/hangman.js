@@ -80,58 +80,31 @@ var view = {
     this.factBox.appendChild(update);
   },
 
-  displayGuessesLeft: function(guessLeftNumber){
+  /** this function will display guesses left to the user
+  * @param {number} guessesLeft- the number of guesses left
+  * @return - does not return anything
+  */
+  displayGuessesLeft: function(guessesLeft){
     // takes a number and displays the guesses left
     // if the number is 0, set the color to red too!
     // 1.) Check to see if the number is zero
-    if (guessLeftNumber <= 0){
+    if (guessesLeft <= 0){
       this.guessesLeftWrapper.className = "red-text";
     } else {
       this.guessesLeftWrapper.className = "";
     }
     // 2.) 
-    this.guessesLeftWrapper.innerHTML = guessLeftNumber;
+    this.guessesLeftWrapper.innerHTML = guessesLeft;
   },
 
-  // AM NOT GOING TO USE THE DISPLAY KEYBOARD
-  displayKeyboard: function(correctArray, incorrectArray){
-    // takes in 2 arrays of correct letters & incorrect letters
-    // if none in both, sets everything to default
-
-    // 1.) Loop through add the buttons 
-    var lettersArray = this.keyboardBox.children;
-    // console.log(letters);
-    for (var i = 0; i < lettersArray.length; i++){
-      // console.log(lettersArray[i].getAttribute("data-letter"));
-      var button = lettersArray[i];
-      var letter = lettersArray[i].getAttribute("data-letter");
-      // console.log(button);
-      // console.log(letter);
-
-      // debugger;
-      // I.) check to see if button is a correct letter
-      if (correctArray.indexOf(letter)>=0){
-        //Ia.) add class btn btn-success
-        button.className = "btn btn-success";
-        //Ib.) add attribute disabled
-        button.setAttribute("disabled", "disabled");
-      } else if (incorrectArray.indexOf(letter)>=0){
-      // II.) Check to see if the button is incorrect letter
-        //IIa.) add class btn btn-danger
-        button.className = "btn btn-danger";
-        //IIb.) add addtribute disabled
-        button.setAttribute("disabled", "disabled");
-      } else {
-      // III.) set the button to default class
-      button.className = "btn btn-default";
-      // delete button[disabled];
-      button.disabled = false;
-      }
-    } // closes for loop
-
-// ////////////////////////
-  },
-
+  /** this function will display a message to User
+  * @param {str} messageType - an array of facts
+  * @param {str} messageString - an array of the sources associated with the facts
+  * @oara {number} setTimer
+  * @return NONE - does not return anything
+  */
+////////////////////////// TO DO!!!! // ////////////////////////
+// display only one message at a time
   displayMessage: function(messageType, messageString, setTimer){
     // will display either a success message or warning message
     // 1) create new div element, and set the class to alert
@@ -159,7 +132,7 @@ var view = {
     // 5.) set timer to remove message
     // 5a.) see if there is a specific time, if not set default
     if (setTimer == undefined){
-        var setTimer = 3000;
+        var setTimer = 2000;
     }
     // 5b.) Run the timer and remove messages with loop
     setTimeout(function(){
@@ -167,12 +140,19 @@ var view = {
     }, setTimer);
   },
 
+  /** this function will display question for the word
+  * @param {str} questionString - a string that contains the question for the specific country
+  * @return NONE - does not return anything
+  */
   displayQuestion: function(questionString){
     // will display the question for the specific country
     this.questionWrapper.innerHTML = questionString;
-
   },
 
+  /** this function will display the word, and will be called to update the display
+  * @param {array} wordArray - an array of the current word
+  * @return NONE - does not return anything
+  */
   displayWord: function(wordArray){
     // will display the the current word
     var wordString = "";
@@ -192,26 +172,22 @@ var view = {
         break;
       }
     }
-    // console.log(wordString);
-    // this.wordWrapper.innerHTML = "<p>" + wordString.toUpperCase() + "</p>";
-    // var test = "<p>" + wordString + "</p>";
-    // var test = wordString;
-
-    // console.log(test);
-    // console.log("<p>Hi &nbsp&nbsp&nbsp&nbsp world hello <br>test<p>");
         this.wordWrapper.innerHTML = wordString;
   },
 
-  displayTotalCorrect: function(number){
-    this.totalCorrectWrapper.innerHTML = number;
+  /** this function will display the total points of the user
+  * @param {number} points - the total points the user has
+  * @return NONE - does not return anything
+  */
+  displayTotalCorrect: function(points){
+    this.totalCorrectWrapper.innerHTML = points;
   },
 
-  // displayWord: function(wordString){
-  //   // will display the the current word
-  //   this.wordWrapper.innerHTML = wordString;
-  // },
 } // closes View object
 
+
+
+// ---------------- TESTING ---------------------
 // TESTING VIEW
 // for (x in view){
 //   console.log(view[x]);
