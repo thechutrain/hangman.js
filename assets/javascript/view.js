@@ -3,7 +3,7 @@
 View
 ============================================================
 */
-var view ={
+var view = {
   // view - Properties, all are DOM variables
   mapBox: document.querySelector("#worldMap"),
   factBox: document.querySelector("#factBox"),
@@ -17,7 +17,11 @@ var view ={
   totalCorrectWrapper: document.querySelector("#totalCorrectWrapper"),
 
   // View - methods
-  displayMap: function(countryNameStr){
+  /** this function will display the google map of the country
+  * @param {str} country - the country that will be highlighted
+  * @return - does not return anything
+  */
+  displayMap: function(country){
     // takes a country name string and updates view so that it will
     // highlight that country. If no string, displays no country
 
@@ -26,14 +30,14 @@ var view ={
 
     function drawRegionsMap() {
 
-      if (countryNameStr == undefined){
+      if (country == undefined){
         var data = google.visualization.arrayToDataTable([
         ["Country"],
         ]);   
       } else {
         var data = google.visualization.arrayToDataTable([
           ["Country"],
-          [countryNameStr],
+          [country],
         ]);
       }
 
@@ -45,8 +49,12 @@ var view ={
     }
 
   },
-
-  displayFact: function(factsArray){
+  /** this function will display the facts & sources on facts of the country
+  * @param {array} factsArray - an array of facts
+  * @param {array} sourcesArray - an array of the sources associated with the facts
+  * @return - does not return anything
+  */
+  displayFact: function(factsArray, sourcesArray){
     // takes an array of facts, and displays each one
     // as a bullet point 
     // 1.) clear previous HTML
@@ -59,9 +67,11 @@ var view ={
     for (var i=0; i< factsArray.length; i++){
       //3a.) create a new li element
       var li = document.createElement("li");
-      //3b.) create a new text node for that li element
+      //3b.) create the source text
+      var source = " <a href='" + sourcesArray[i] + "' alt='link to source' target='_blank'>[source]</a>";
       //3c.) update that text to the li element
-      li.innerHTML = factsArray[i];
+      li.innerHTML = factsArray[i] + source;
+
       //3d.) append the whole li element to the ul
       update.appendChild(li);
     }
@@ -83,6 +93,7 @@ var view ={
     this.guessesLeftWrapper.innerHTML = guessLeftNumber;
   },
 
+  // AM NOT GOING TO USE THE DISPLAY KEYBOARD
   displayKeyboard: function(correctArray, incorrectArray){
     // takes in 2 arrays of correct letters & incorrect letters
     // if none in both, sets everything to default
