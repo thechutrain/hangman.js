@@ -5,7 +5,49 @@ Make everything a border-box
 * {
     box-sizing: border-box;
     font-family: 'Didact Gothic', sans-serif;
+    border-radius: 0.5em;
     /*border: 1px solid black;*/
+}
+
+
+/*
+================================
+Edit Background colors to make it easier to view
+================================*/
+.introduction-header{
+  background-color: #225378;
+  margin-bottom: 5em;
+  color: white;
+}
+
+.main-game {
+  background-color: #F3FFE2;
+  border-radius: 1em;
+  border: black 1px solid;
+  margin-bottom: 5em;
+  color: black;
+  padding-top: 1em;
+}
+
+/*
+================================
+Error Message
+================================*/
+.introduction-header{
+  position: relative;
+  z-index: 0;
+}
+
+#messageBoxContainer {
+  position: absolute;
+  z-index: 1;
+  /*max-height: 10em;*/
+}
+
+#messageBox {
+  border: 1px solid black;
+  max-height: 10em;
+  overflow: hidden;
 }
 
 
@@ -28,9 +70,4 @@ button.btn{
   letter-spacing: 0.02em;
   font-stretch: expanded;
 /*  overflow: hidden;*/
-}
-
-#messageBox {
-  border: 1px solid black;
-  min-height: 20em;
 }

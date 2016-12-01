@@ -16,24 +16,37 @@
 
 
   <!-- Top row which will contain word & stats components -->
-  <div class="row top">
+  <div class="row introduction-header">
 
-    <div class="col-sm-9"> 
+    <div class="col-sm-12"> 
         <h2>Atlas's Hangman</h2>
         <p>Directions:</p>
-        <p>Start playing this game by pressing any letter key on your computer. Don't worry if you accidentally press an invalid key though - we won't deduct it from your guess count :)</p>
+        <p>Start playing this game by pressing any letter key on your computer. The fewer guesses it take for you to get the correct country, the more points you will awarded. Don't worry if you accidentally press an invalid key though - we won't deduct it from your guess count :)</p>
+    </div>
 
-    <div class="row word-question-container">
-        <div class="col-sm-11 col-sm-offset-1">
-          <h3><span id="questionBox">Question goes here</span>            <button class="btn btn-default skip" data-letter="invalid">Skip</button></h3>
+    <div class="col-sm-6 col-sm-offset-3" id="messageBoxContainer">
+      <!-- Where message will appear -->
+      <div id="messageBox">
+      </div>
+    </div>
 
+  </div> <!-- closes div row directions-->
+
+  <!-- This row contains the question, the word and the stats -->
+  <div class="row main-game" id="hangman-game">
+    
+<!-- Display Question & Word in a col-sm-9 -->
+    <div class="col-sm-9 text-center">
+        <div class="">
+          <h3><span id="questionBox">Question goes here</span>
         </div>   
-        <div class="col-sm-11 col-sm-offset-1">
-          <h2><span id="wordBox">WORD display goes here</span></h2>
+
+        <div class="">
+          <h1><span id="wordBox">WORD display goes here</span></h1>
         </div>    
     </div>
 
-      <div class="row keyboard-wrapper">
+<!--       <div class="row keyboard-wrapper">
         
         <div class="col-sm-9" id="keyboardBox">
           <button class="btn btn-default" data-letter="A">A</button>
@@ -63,15 +76,10 @@
           <button class="btn btn-default" data-letter="Y">Y</button>
           <button class="btn btn-default" data-letter="Z">Z</button>
         </div>
+      </div> -->
 
 
-      </div>
-    </div>
-
-
-
-    <div class="col-sm-3">
-      
+    <div class="col-sm-3"> 
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Stats Go here:</h3>
@@ -84,21 +92,22 @@
             <h4 class="text-center"><span id="totalCorrectWrapper">0</span></h4>
 
             <h6 class="text-center">Time left:</h6>
-            <h4 class="text-center">1:23</h4>
+            <h4 class="text-center"><span id="clock"></span></h4>
               
-              <h6 class="text-center">Guesses Left:</h6>
-              <h2 class="text-center"><span id="guessesLeftWrapper">7</span></h2>
-
+            <h6 class="text-center">Guesses Left:</h6>
+            <h2 class="text-center"><span id="guessesLeftWrapper">7</span></h2>
         </div>
       </div>
 
-      <div id="messageBox">
-
-      </div>
+    </div> <!-- closes div col-3 aside-->
 
 
-    </div>
-  </div>
+  </div> <!-- closes question, the word and the stats row div-->
+  
+
+
+
+
 
 
   <!-- Bottom row will contain the map and facts component -->
@@ -135,7 +144,13 @@
     </div>
   </div>
 
-    
+<div class="row proceed-section">
+  <div class="col-sm-6 col-sm-offset-3">
+    <a href="#hangman-game"><button class="btn btn-block btn-success" id="new-country">Next Country</button></a>
+  </div>
+</div>
+
+
 </div><!-- closes container-fluid  -->
 
 <footer class="footer text-center"> <p>"Let's Make Learning Fun" 
@@ -146,6 +161,7 @@
 
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="assets/javascript/timer.js"></script>
 <script type="text/javascript" src="assets/javascript/view.js"></script>
 <script type="text/javascript" src="assets/javascript/model.js"></script>
 <script type="text/javascript" src="assets/javascript/controller.js"></script>

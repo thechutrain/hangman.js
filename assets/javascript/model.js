@@ -41,6 +41,7 @@ var model = {
   userWins: 0,
   // Properties of hangman round
   guessesAllowed: 7,
+  totalPoints: 0,
   guessesLeft: 3,
   correctLettersArray: ["F"],
   incorrectLettersArray: ["B"],
@@ -56,6 +57,9 @@ var model = {
 
 
   // METHODS
+  /** this method starts a new game
+  * @return NONE - does not return anything
+  */
   initializeGame: function(){
     // this function creates the indexChoices, resets all the variables,
     // and also calls the new country function
@@ -67,28 +71,36 @@ var model = {
 
   },
 
-
+  /** this method gets a new country
+  * @param {array} wordArray - an array of the current word
+  * @return NONE - does not return anything
+  */
   newCountry: function(){
-// * Nested FUNCTION!
-    function arrayifyWord(word, showLettersBool){
-      // console.log("H I");
-      var returnArray = [];
-      // *) Loop through the word
-      for (index in word){
-        if(word[index]==" "){
-          // console.log("//");
-          returnArray.push("//");
-        } else if (showLettersBool){
-          // console.log(word[index]);
-          returnArray.push(word[index].toUpperCase());
-        } else{
-          // console.log(word[index]);
-          returnArray.push(" ");
+  // * Nested FUNCTION!
+    /** this nested functions takes a word and converts it to an array 
+    * of either letters or empty spaces in place of letters
+    * @param {str} word - the word that you will turn into an array
+    * @param {boolean} showLetter - if true, it'll return an array containing letter values
+    * @return {array} arrayifiedWord - an array of the word that was in the arguments
+    */
+      function arrayifyWord(word, showLettersBool){
+        var arrayifiedWord = [];
+        // *) Loop through the word
+        for (index in word){
+          if(word[index]==" "){
+            // console.log("//");
+            arrayifiedWord.push("//");
+          } else if (showLettersBool){
+            // console.log(word[index]);
+            arrayifiedWord.push(word[index].toUpperCase());
+          } else{
+            // console.log(word[index]);
+            arrayifiedWord.push(" ");
+          }
         }
-      }
-      // console.log(returnArray);
-      return returnArray;
-    };
+        // console.log(arrayifiedWord);
+        return arrayifiedWord;
+      };
 
   // I.) RESET ALL PREVIOUS PROERTIES
     // 1.) reset the guesses left
@@ -103,7 +115,6 @@ var model = {
       this.currentCountryObject = {};
     
   // II.) GET A NEW COUNTRY
-
   // 1.) Pop the last country from the array
   // * FUTURE / TO DO! --> get a random country
   // 1a) get a random index & remove it
@@ -200,6 +211,7 @@ var model = {
     }
     // 2.) Assume the User did win!
     this.userWins ++;
+    this.totalPoints += this.guessesLeft;
     return true;
 
   },

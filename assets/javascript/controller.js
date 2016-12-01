@@ -26,7 +26,8 @@ var controller = {
   // 1) Update GuessesLeft
   view.displayGuessesLeft(model.guessesLeft);
   // 2.) update the keyboard
-  view.displayKeyboard(model.correctLettersArray, model.incorrectLettersArray)
+  // KEYBOARD
+  // view.displayKeyboard(model.correctLettersArray, model.incorrectLettersArray)
   // 3.) display current word
   view.displayWord(model.userWordArray);
   //4.) display the question
@@ -42,7 +43,7 @@ var controller = {
   // 1) display map of country
   view.displayMap(model.currentCountryObject["countryName"]);
   // 2.) display all the facts
-  view.displayFact(model.currentCountryObject["facts"]);
+  view.displayFact(model.currentCountryObject["facts"], model.currentCountryObject["sourcesFact"]);
   // 3.) display the country
   view.displayWord(model.currentWordArray);
   //4.) update wins
@@ -148,12 +149,23 @@ document.addEventListener("keyup", controller.keyupEventListener);
 
 // ** Add event listener for each button 
 //1) first get all the buttons
-var allButtons = document.querySelectorAll(".btn-default");
-// 2) loop through each button and add the event listener
-for (var i = 0; i < allButtons.length; i++){
-  allButtons[i].addEventListener("click", controller.buttonEventListener);
-}
+// var allButtons = document.querySelectorAll(".btn-default");
+// // 2) loop through each button and add the event listener
+// for (var i = 0; i < allButtons.length; i++){
+//   allButtons[i].addEventListener("click", controller.buttonEventListener);
+// }
 
+/*
+============================================================
+Event listener - next country
+============================================================
+*/
+document.querySelector("#new-country").addEventListener("click", function(){
+  // scroll back to the top
+
+  // get a new country / reset 
+  controller.newCountry();
+});
 
 /*
 ============================================================
@@ -171,5 +183,7 @@ TESTING !!!!
 // processGuess();
 // controller.updateView();
 // controller.showAnswer();
+
+
 
 
